@@ -1,23 +1,23 @@
-# ExhibitSnap Privacy Policy
+# FinalSnap Privacy Policy
 
 Last updated: May 5, 2026
 
-ExhibitSnap is a Chrome extension for capturing full-page screenshots, editing them locally, and exporting images or PDFs. This policy explains what data the extension processes and how that data is handled.
+FinalSnap is a Chrome extension for capturing full-page screenshots, editing them locally, and exporting images or PDFs. This policy explains what data the extension processes and how that data is handled.
 
 ## Data Processed Locally
 
-ExhibitSnap processes screenshot and editor data locally in the user's browser. This may include:
+FinalSnap processes screenshot and editor data locally in the user's browser. This may include:
 
 - Screenshot image data from the active tab after the user starts a capture.
 - Local screenshot history saved in the user's Chrome profile.
 - Editor actions, annotations, crop settings, erase areas, and export settings.
 - Extension preferences such as language, default image format, and PDF settings.
 
-Screenshot image data is not uploaded to ExhibitSnap servers by the extension.
+Screenshot image data is not uploaded to FinalSnap servers by the extension.
 
 ## Data Sent to a License Server
 
-If Pro licensing or paid features are enabled, ExhibitSnap may contact a license server to verify access. The extension may send:
+If Pro licensing or paid features are enabled, FinalSnap may contact a license server to verify access. The extension may send:
 
 - An installation ID generated for license and trial tracking.
 - An optional email address if the user provides one for license lookup.
@@ -29,15 +29,15 @@ This data is used only to verify Pro access, manage purchases, support subscript
 
 ## Payments
 
-Payments, if offered, are processed by Stripe Checkout or another disclosed payment provider. ExhibitSnap does not collect, process, or store credit card numbers.
+Payments, if offered, are processed by Stripe Checkout or another disclosed payment provider. FinalSnap does not collect, process, or store credit card numbers.
 
 ## Chrome Permissions
 
-ExhibitSnap requests Chrome permissions only to provide its screenshot, editing, export, and local history features. For example, it uses access to the active tab only after the user starts a capture, uses downloads to save exported files, and uses storage to keep local settings and screenshot history.
+FinalSnap requests Chrome permissions only to provide its screenshot, editing, export, and local history features. For example, it uses access to the active tab only after the user starts a capture, uses downloads to save exported files, and uses storage to keep local settings and screenshot history.
 
 ## Data Sharing
 
-ExhibitSnap does not sell personal data. Screenshot content is not shared with third parties by the extension. Payment information is handled by the payment provider when a user chooses to purchase paid features.
+FinalSnap does not sell personal data. Screenshot content is not shared with third parties by the extension. Payment information is handled by the payment provider when a user chooses to purchase paid features.
 
 ## Data Retention and Deletion
 
@@ -45,7 +45,7 @@ Screenshot history and extension settings remain in the user's Chrome profile un
 
 ## Children's Privacy
 
-ExhibitSnap is not directed to children under 13 and does not knowingly collect personal information from children.
+FinalSnap is not directed to children under 13 and does not knowingly collect personal information from children.
 
 ## Changes to This Policy
 
