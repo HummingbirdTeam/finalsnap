@@ -18,3 +18,10 @@ Homepage hero animation:
 - `assets/finalsnap-magic-cut-v7-poster.png`
 
 These are generated from `tools/render-finalsnap-magic-cut-promo-v7.py` and should stay aligned with the current short promo-video baseline in `marketing/promo-v7/`.
+
+Locked approved promo-video snapshot:
+
+- `assets/finalsnap-magic-cut-v7-scissors-locked-20260510.mp4`
+- `assets/finalsnap-magic-cut-v7-scissors-locked-20260510-poster.png`
+
+Keep these versioned files as the stable fallback for the May 10, 2026 scissors-consistent promo version.
