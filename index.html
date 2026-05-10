@@ -40,7 +40,7 @@
       }
 
       .wrap {
-        width: min(1160px, calc(100% - 40px));
+        width: min(1460px, calc(100% - 40px));
         margin: 0 auto;
       }
 
@@ -89,14 +89,14 @@
       }
 
       .hero {
-        padding: 78px 0 54px;
+        padding: 68px 0 42px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: minmax(0, 0.92fr) minmax(520px, 1.08fr);
+        grid-template-columns: minmax(360px, 0.58fr) minmax(760px, 1.42fr);
         align-items: center;
-        gap: 48px;
+        gap: 42px;
       }
 
       .eyebrow {
@@ -116,7 +116,7 @@
       h1 {
         margin: 22px 0 0;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(58px, 8vw, 96px);
+        font-size: clamp(54px, 6.4vw, 88px);
         line-height: 0.95;
         letter-spacing: 0;
       }
@@ -173,8 +173,8 @@
       .hero-visual::before {
         content: "";
         position: absolute;
-        inset: -22px;
-        border-radius: 34px;
+        inset: -18px;
+        border-radius: 30px;
         background:
           radial-gradient(circle at 20% 15%, rgba(243, 189, 50, 0.2), transparent 38%),
           linear-gradient(135deg, #e9f5f2, #fffdf8);
@@ -186,7 +186,7 @@
         width: 100%;
         height: auto;
         border: 1px solid rgba(17, 29, 43, 0.12);
-        border-radius: 18px;
+        border-radius: 16px;
         box-shadow: var(--shadow);
       }
 
@@ -278,8 +278,8 @@
 
       .demo {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 22px;
+        grid-template-columns: minmax(680px, 1.34fr) minmax(340px, 0.66fr);
+        gap: 34px;
         align-items: center;
       }
 
@@ -291,7 +291,7 @@
       }
 
       .demo-copy {
-        padding: 22px;
+        padding: 10px 0 10px 10px;
       }
 
       .demo-copy p {
@@ -365,7 +365,7 @@
 
       @media (max-width: 620px) {
         .wrap {
-          width: min(100% - 28px, 1160px);
+          width: min(100% - 28px, 1460px);
         }
 
         .nav-inner {
@@ -426,7 +426,7 @@
             </div>
           </div>
           <div class="hero-visual">
-            <img src="assets/finalsnap-marquee.png" alt="FinalSnap before and after example showing a middle band removed from a long screenshot.">
+            <img src="assets/cut-stitch-export.png" alt="FinalSnap before and after example showing a selected middle strip and the same page after the cut.">
           </div>
         </div>
       </section>
