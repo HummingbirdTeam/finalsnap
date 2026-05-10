@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FinalSnap Support</title>
+    <meta name="description" content="Get support for FinalSnap, a Chrome extension for cleaning long webpage screenshots and exporting evidence-ready PDF or image records.">
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #111d2b;
+        --muted: #5f6e80;
+        --teal: #137b6d;
+        --line: #d4e0ea;
+        --paper: #fffdf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, #eef7f5, var(--paper));
+      }
+
+      main {
+        width: min(880px, calc(100% - 40px));
+        margin: 56px auto;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 20px 64px rgba(17, 29, 43, 0.1);
+        padding: 38px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: inherit;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .brand img {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        margin: 34px 0 0;
+        font-size: clamp(36px, 6vw, 58px);
+        letter-spacing: 0;
+        line-height: 1.05;
+      }
+
+      h2 {
+        margin: 34px 0 12px;
+        font-size: 22px;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      ul,
+      ol {
+        padding-left: 22px;
+      }
+
+      a {
+        color: var(--teal);
+        font-weight: 800;
+      }
+
+      .contact {
+        margin-top: 24px;
+        border: 1px solid rgba(19, 123, 109, 0.22);
+        border-radius: 14px;
+        background: #f1faf7;
+        padding: 18px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .button.primary {
+        border-color: var(--teal);
+        background: var(--teal);
+        color: #fff;
+      }
+
+      @media (max-width: 620px) {
+        main {
+          width: min(100% - 28px, 880px);
+          margin: 28px auto;
+        }
+
+        .card {
+          padding: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <a class="brand" href="./">
+          <img src="assets/store-icon-128.png" alt="">
+          <span>FinalSnap</span>
+        </a>
+        <h1>Support</h1>
+        <p>
+          FinalSnap helps you capture, restructure, clean, and export long web
+          screenshots. If something does not work as expected, send a concise
+          report and we will use it to improve the product.
+        </p>
+
+        <div class="contact">
+          <strong>Email support</strong>
+          <p>
+            Contact <a href="mailto:alexrongpku@gmail.com">alexrongpku@gmail.com</a>
+            for product support, bug reports, Chrome Web Store review questions,
+            beta access, tester access, or Pro access questions.
+          </p>
+        </div>
+
+        <h2>What to include</h2>
+        <ul>
+          <li>FinalSnap version.</li>
+          <li>Chrome version and operating system.</li>
+          <li>The page URL you were trying to capture, if it is safe to share.</li>
+          <li>What you expected to happen.</li>
+          <li>What actually happened.</li>
+          <li>Your browser authorization ID if you are asking about tester, beta, trial, or Pro access.</li>
+        </ul>
+
+        <h2>Privacy note</h2>
+        <p>
+          FinalSnap's report buttons may prefill useful diagnostic context, but
+          they do not automatically attach or upload screenshot image data. You
+          can review and edit the email before sending it.
+        </p>
+
+        <h2>Common first checks</h2>
+        <ol>
+          <li>Refresh the target page and capture again.</li>
+          <li>Avoid Chrome internal pages such as <code>chrome://</code>, where Chrome blocks capture scripts.</li>
+          <li>For very long pages, try exporting after a quick crop or Cut Middle cleanup.</li>
+          <li>If a page has popups, ads, or lazy loading, close visible overlays before capture when possible.</li>
+        </ol>
+
+        <div class="buttons">
+          <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Chrome Web Store</a>
+          <a class="button" href="privacy.html">Privacy Policy</a>
+          <a class="button" href="./">Home</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
