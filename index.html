@@ -95,8 +95,20 @@
       .hero-grid {
         display: grid;
         grid-template-columns: minmax(360px, 0.58fr) minmax(760px, 1.42fr);
+        grid-template-areas:
+          "copy visual"
+          "actions visual";
         align-items: center;
         gap: 42px;
+      }
+
+      .hero-copy {
+        grid-area: copy;
+      }
+
+      .hero-actions {
+        grid-area: actions;
+        align-self: start;
       }
 
       .eyebrow {
@@ -168,6 +180,7 @@
 
       .hero-visual {
         position: relative;
+        grid-area: visual;
       }
 
       .hero-visual::before {
@@ -181,13 +194,20 @@
         z-index: -1;
       }
 
-      .hero-visual img {
+      .hero-visual img,
+      .hero-visual video {
         display: block;
         width: 100%;
         height: auto;
         border: 1px solid rgba(17, 29, 43, 0.12);
         border-radius: 16px;
         box-shadow: var(--shadow);
+        background: #fffdf8;
+      }
+
+      .hero-visual video {
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
       }
 
       .proof-strip {
@@ -353,6 +373,10 @@
         }
 
         .hero-grid {
+          grid-template-areas:
+            "copy"
+            "visual"
+            "actions";
           gap: 34px;
         }
 
@@ -380,7 +404,16 @@
         }
 
         .hero {
-          padding-top: 44px;
+          padding-top: 34px;
+        }
+
+        .lead {
+          margin-top: 22px;
+          font-size: 20px;
+        }
+
+        .hero-visual {
+          margin-top: -8px;
         }
 
         .actions {
@@ -411,7 +444,7 @@
     <main>
       <section class="hero">
         <div class="wrap hero-grid">
-          <div>
+          <div class="hero-copy">
             <span class="eyebrow">Full-page capture plus cleanup</span>
             <h1>Remove the messy middle.</h1>
             <span class="underline" aria-hidden="true"></span>
@@ -420,13 +453,24 @@
               cut irrelevant middle bands, reconnect the page, erase visual
               noise, and export a polished PDF or image.
             </p>
-            <div class="actions">
-              <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
-              <a class="button" href="#features">See what it does</a>
-            </div>
           </div>
           <div class="hero-visual">
-            <img src="assets/before-after-comparison.png" alt="FinalSnap before and after comparison showing a selected middle strip removed from a web page.">
+            <video
+              data-hero-video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster="assets/finalsnap-magic-cut-v7-poster.png"
+              aria-label="FinalSnap animation showing a selected middle strip being removed, the page reconnecting, and a shorter clean evidence screenshot.">
+              <source src="assets/finalsnap-magic-cut-v7.mp4" type="video/mp4">
+              FinalSnap removes the messy middle from long web screenshots and reconnects the remaining page.
+            </video>
+          </div>
+          <div class="actions hero-actions">
+            <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
+            <a class="button" href="#features">See what it does</a>
           </div>
         </div>
       </section>
@@ -491,7 +535,7 @@
 
       <section class="section">
         <div class="wrap demo">
-          <img src="assets/cut-stitch-export.png" alt="FinalSnap Cut Middle example with the selected band and the stitched result.">
+          <img src="assets/cut-reconnect-export.png" alt="FinalSnap Cut Middle example with the selected band and the reconnected result.">
           <div class="demo-copy">
             <h2>Same evidence. Shorter page.</h2>
             <p>
@@ -535,9 +579,39 @@
           &nbsp; / &nbsp;
           <a href="support.html">Support</a>
           &nbsp; / &nbsp;
-          <a href="mailto:alexrongpku@gmail.com">Contact</a>
+          <a href="mailto:finalsnapapp@gmail.com">Contact</a>
         </span>
       </div>
     </footer>
+    <script>
+      (function () {
+        var video = document.querySelector("[data-hero-video]");
+        if (!video) return;
+
+        function playHeroVideo() {
+          video.muted = true;
+          var play = video.play && video.play();
+          if (play && typeof play.catch === "function") {
+            play.catch(function () {
+              video.setAttribute("controls", "");
+            });
+          }
+        }
+
+        if ("IntersectionObserver" in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            if (entries.some(function (entry) { return entry.isIntersecting; })) {
+              playHeroVideo();
+            }
+          }, { threshold: 0.2 });
+          observer.observe(video);
+        }
+
+        window.addEventListener("load", playHeroVideo, { once: true });
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) playHeroVideo();
+        });
+      })();
+    </script>
   </body>
 </html>

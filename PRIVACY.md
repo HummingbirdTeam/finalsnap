@@ -69,7 +69,7 @@ FinalSnap requests Chrome permissions only to provide its screenshot, editing, e
 
 - `activeTab`: used only after the user starts a capture, so FinalSnap can access the currently active tab.
 - `scripting`: used to inject the capture helper into the active tab after the user starts a capture, so the page can be measured, scrolled, captured, and restored.
-- `offscreen`: used to stitch captured screenshot tiles and prepare exports inside the extension context.
+- `offscreen`: used to combine captured screenshot tiles and prepare exports inside the extension context.
 - `downloads`: used to save exported PDF or image files to the user's device.
 - `storage` and `unlimitedStorage`: used to keep local settings, screenshot history, edited image data, export preferences, trial state, and license state.
 - `contextMenus`: used to provide an optional right-click capture command.
@@ -131,4 +131,4 @@ This privacy policy may be updated from time to time. The updated version will b
 
 ## Contact
 
-For privacy questions, contact: alexrongpku@gmail.com
+For privacy questions, contact: finalsnapapp@gmail.com

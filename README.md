@@ -11,3 +11,10 @@ Recommended Chrome Web Store URLs after GitHub Pages is enabled:
 
 Chrome Web Store "Official URL" can remain `None` until the site is verified in Google Search Console.
 The Homepage URL and Support URL can use the GitHub Pages URLs above immediately.
+
+Homepage hero animation:
+
+- `assets/finalsnap-magic-cut-v7.mp4`
+- `assets/finalsnap-magic-cut-v7-poster.png`
+
+These are generated from `tools/render-finalsnap-magic-cut-promo-v7.py` and should stay aligned with the current short promo-video baseline in `marketing/promo-v7/`.
