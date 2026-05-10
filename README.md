@@ -14,10 +14,16 @@ The Homepage URL and Support URL can use the GitHub Pages URLs above immediately
 
 Homepage hero animation:
 
-- `assets/finalsnap-magic-cut-v7.mp4`
-- `assets/finalsnap-magic-cut-v7-poster.png`
+- `assets/finalsnap-magic-cut-v7-site-nologo.mp4`
+- `assets/finalsnap-magic-cut-v7-site-nologo-poster.png`
 
 These are generated from `tools/render-finalsnap-magic-cut-promo-v7.py` and should stay aligned with the current short promo-video baseline in `marketing/promo-v7/`.
+The homepage uses the no-logo variant because the site navigation already carries the FinalSnap brand mark; avoid double logo exposure in the first viewport.
+
+Standalone promo-video baseline:
+
+- `assets/finalsnap-magic-cut-v7.mp4`
+- `assets/finalsnap-magic-cut-v7-poster.png`
 
 Locked approved promo-video snapshot:
 
