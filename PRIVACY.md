@@ -27,13 +27,13 @@ This local data remains in the user's browser profile unless the user deletes it
 If Pro licensing, paid features, beta access, tester access, redemption codes, or promotion-based Pro rewards are enabled, FinalSnap may contact a license or promotion server to verify access. The extension may send:
 
 - An installation ID generated for license, trial, tester, and abuse-prevention checks.
-- An optional email address if the user provides one for license lookup, beta access, tester access, support, Pro code delivery, or promotion reward review.
+- An optional account/contact email address if the user provides one for license lookup, beta access, tester access, support, Pro code delivery, or promotion reward review.
 - The extension version.
 - Trial status, remaining Pro days, license status, and limited feature-use counters.
 - Payment or subscription identifiers returned by the payment provider.
-- Promotion claim details submitted by the user, such as the promotion platform, public post URL, requested reward days, and claim notes.
+- Promotion claim details submitted by the user, such as the promotion platform, public post URL, requested reward days, account email, and claim notes.
 
-This data is used only to verify Pro access, manage purchases or subscriptions, deliver codes, review promotion reward claims, provide beta or support access, and prevent abuse.
+This data is used only to verify Pro access, manage purchases or subscriptions, deliver codes to the registered account email, review promotion reward claims, provide beta or support access, and prevent abuse.
 
 FinalSnap does not upload screenshot image data as part of license or promotion checks.
 
@@ -113,7 +113,7 @@ Users can control local FinalSnap data by:
 - Removing or uninstalling the extension.
 - Avoiding optional support, beta, tester, license, or promotion submissions.
 
-Users can request deletion of support, beta, tester, license, or promotion records associated with an email address by contacting FinalSnap at the address below.
+Users can request deletion of support, beta, tester, license, or promotion records associated with an account/contact email address by contacting FinalSnap at the address below.
 
 ## Data Retention
 
