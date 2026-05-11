@@ -156,6 +156,34 @@
           promotion checks.
         </p>
 
+        <h2>Optional Product Analytics</h2>
+        <p>
+          If FinalSnap's analytics endpoint is configured and the user keeps
+          anonymous usage statistics enabled, FinalSnap may send low-frequency
+          product events to help understand installation quality, version
+          adoption, and feature reliability. These events may include:
+        </p>
+        <ul>
+          <li>A generated installation ID.</li>
+          <li>The extension version.</li>
+          <li>Browser language, time zone, platform, and Chrome version.</li>
+          <li>Key product events such as install, update, capture started, capture succeeded or failed, editor opened, Cut Middle confirmed, Smart Erase confirmed, export completed, upgrade prompt shown, checkout clicked, and uninstall feedback page opened.</li>
+          <li>Basic event properties such as output dimensions, number of screenshot tiles, export format, warning codes, or whether a capture was partial.</li>
+        </ul>
+        <p>
+          FinalSnap does not upload screenshot image data, webpage content,
+          captured page URLs, continuous browsing history, keystrokes, mouse
+          movements, or raw clickstream data for analytics.
+        </p>
+        <p>
+          Server-side logs may derive coarse region information such as country,
+          region, or city from hosting or CDN headers. FinalSnap does not need to
+          store IP addresses for the analytics summary.
+        </p>
+        <p>
+          Users can disable anonymous usage statistics in FinalSnap Options.
+        </p>
+
         <h2>Support and Feedback</h2>
         <p>
           If a user chooses to send a support, feedback, beta-request, or
@@ -189,7 +217,7 @@
           <li>Health information as a separate data category.</li>
           <li>Personal communications such as emails, text messages, or chats as a separate data category.</li>
           <li>Continuous browsing history or background browsing activity.</li>
-          <li>Keystroke logging, mouse tracking, or click tracking for analytics.</li>
+          <li>Keystroke logging, mouse tracking, or continuous clickstream tracking for analytics.</li>
           <li>Screenshot image data on FinalSnap servers.</li>
         </ul>
         <p>
@@ -224,6 +252,7 @@
           <li>A payment provider such as Stripe if the user chooses to purchase paid features.</li>
           <li>An email provider if the user chooses to send support, feedback, beta, tester, or promotion emails.</li>
           <li>A license or promotion server if Pro access, redemption codes, tester access, beta access, or promotion rewards are enabled.</li>
+          <li>An analytics endpoint if anonymous usage statistics are enabled.</li>
         </ul>
         <p>
           Screenshot image data is not sold, transferred to advertising networks,
@@ -271,11 +300,12 @@
           <li>Clearing Chrome extension data.</li>
           <li>Removing or uninstalling the extension.</li>
           <li>Avoiding optional support, beta, tester, license, or promotion submissions.</li>
+          <li>Turning off anonymous usage statistics in FinalSnap Options.</li>
         </ul>
         <p>
-          Users can request deletion of support, beta, tester, license, or
-          promotion records associated with an account/contact email address by
-          contacting FinalSnap at the address below.
+          Users can request deletion of support, beta, tester, license, promotion,
+          or analytics records associated with an account/contact email address or
+          installation ID by contacting FinalSnap at the address below.
         </p>
 
         <h2>Data Retention</h2>
@@ -285,10 +315,11 @@
           or uninstalls FinalSnap.
         </p>
         <p>
-          License, payment-status, beta, tester, support, and promotion records may
-          be retained as long as needed to provide access, resolve support requests,
-          prevent abuse, maintain business records, comply with legal obligations,
-          or administer the relevant program.
+          License, payment-status, beta, tester, support, promotion, and analytics
+          records may be retained as long as needed to provide access, resolve
+          support requests, improve product reliability, prevent abuse, maintain
+          business records, comply with legal obligations, or administer the
+          relevant program.
         </p>
 
         <h2>Children's Privacy</h2>

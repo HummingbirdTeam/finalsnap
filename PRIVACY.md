@@ -37,6 +37,22 @@ This data is used only to verify Pro access, manage purchases or subscriptions, 
 
 FinalSnap does not upload screenshot image data as part of license or promotion checks.
 
+## Optional Product Analytics
+
+If FinalSnap's analytics endpoint is configured and the user keeps anonymous usage statistics enabled, FinalSnap may send low-frequency product events to help understand installation quality, version adoption, and feature reliability. These events may include:
+
+- A generated installation ID.
+- The extension version.
+- Browser language, time zone, platform, and Chrome version.
+- Key product events such as install, update, capture started, capture succeeded or failed, editor opened, Cut Middle confirmed, Smart Erase confirmed, export completed, upgrade prompt shown, checkout clicked, and uninstall feedback page opened.
+- Basic event properties such as output dimensions, number of screenshot tiles, export format, warning codes, or whether a capture was partial.
+
+FinalSnap does not upload screenshot image data, webpage content, captured page URLs, continuous browsing history, keystrokes, mouse movements, or raw clickstream data for analytics.
+
+Server-side logs may derive coarse region information such as country, region, or city from hosting or CDN headers. FinalSnap does not need to store IP addresses for the analytics summary.
+
+Users can disable anonymous usage statistics in FinalSnap Options.
+
 ## Support and Feedback
 
 If a user chooses to send a support, feedback, beta-request, or tester-request email from FinalSnap, the email may be prefilled with diagnostic context such as the extension version, installation ID, page title or URL related to the issue, basic extension settings, browser language, platform, and browser user agent.
@@ -58,7 +74,7 @@ FinalSnap does not intentionally collect:
 - Health information as a separate data category.
 - Personal communications such as emails, text messages, or chats as a separate data category.
 - Continuous browsing history or background browsing activity.
-- Keystroke logging, mouse tracking, or click tracking for analytics.
+- Keystroke logging, mouse tracking, or continuous clickstream tracking for analytics.
 - Screenshot image data on FinalSnap servers.
 
 A screenshot may contain whatever visible webpage content the user chooses to capture. That screenshot content is processed locally by the extension unless the user separately chooses to share or send it outside FinalSnap.
@@ -83,6 +99,7 @@ FinalSnap may interact with these third-party services only when needed for the 
 - A payment provider such as Stripe if the user chooses to purchase paid features.
 - An email provider if the user chooses to send support, feedback, beta, tester, or promotion emails.
 - A license or promotion server if Pro access, redemption codes, tester access, beta access, or promotion rewards are enabled.
+- An analytics endpoint if anonymous usage statistics are enabled.
 
 Screenshot image data is not sold, transferred to advertising networks, or uploaded by the extension to FinalSnap servers.
 
@@ -112,14 +129,15 @@ Users can control local FinalSnap data by:
 - Clearing Chrome extension data.
 - Removing or uninstalling the extension.
 - Avoiding optional support, beta, tester, license, or promotion submissions.
+- Turning off anonymous usage statistics in FinalSnap Options.
 
-Users can request deletion of support, beta, tester, license, or promotion records associated with an account/contact email address by contacting FinalSnap at the address below.
+Users can request deletion of support, beta, tester, license, promotion, or analytics records associated with an account/contact email address or installation ID by contacting FinalSnap at the address below.
 
 ## Data Retention
 
 Local screenshot history and extension settings remain in the user's Chrome profile until the user deletes them, clears browser extension data, or uninstalls FinalSnap.
 
-License, payment-status, beta, tester, support, and promotion records may be retained as long as needed to provide access, resolve support requests, prevent abuse, maintain business records, comply with legal obligations, or administer the relevant program.
+License, payment-status, beta, tester, support, promotion, and analytics records may be retained as long as needed to provide access, resolve support requests, improve product reliability, prevent abuse, maintain business records, comply with legal obligations, or administer the relevant program.
 
 ## Children's Privacy
 
