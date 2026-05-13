@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FinalSnap Chrome Extension - Clean Long Screenshots</title>
+    <meta name="description" content="FinalSnap is a Chrome extension for cleaning long webpage screenshots: cut the messy middle, reconnect the page, erase noise, and export evidence as PDF or image.">
+    <link rel="canonical" href="https://hummingbirdteam.github.io/finalsnap/chrome-extension.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FinalSnap">
+    <meta property="og:title" content="FinalSnap Chrome Extension - Clean Long Screenshots">
+    <meta property="og:description" content="Cut the messy middle from long webpage screenshots and export clean evidence in seconds.">
+    <meta property="og:url" content="https://hummingbirdteam.github.io/finalsnap/chrome-extension.html">
+    <meta property="og:image" content="https://hummingbirdteam.github.io/finalsnap/assets/finalsnap-marquee.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FinalSnap Chrome Extension - Clean Long Screenshots">
+    <meta name="twitter:description" content="Cut the messy middle from long webpage screenshots and export clean evidence in seconds.">
+    <meta name="twitter:image" content="https://hummingbirdteam.github.io/finalsnap/assets/finalsnap-marquee.png">
+    <link rel="icon" href="assets/store-icon-128.png">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "FinalSnap Chrome Extension",
+        "alternateName": "FinalSnap",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "description": "FinalSnap is a Chrome extension for cleaning long webpage screenshots: cut the messy middle, reconnect the page, erase noise, and export evidence as PDF or image.",
+        "url": "https://hummingbirdteam.github.io/finalsnap/chrome-extension.html",
+        "image": "https://hummingbirdteam.github.io/finalsnap/assets/finalsnap-marquee.png",
+        "downloadUrl": "https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd",
+        "softwareVersion": "0.3.161",
+        "browserRequirements": "Google Chrome 109 or later",
+        "sameAs": [
+          "https://hummingbirdteam.github.io/finalsnap/",
+          "https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd"
+        ]
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #111d2b;
+        --muted: #5f6e80;
+        --paper: #fffdf8;
+        --teal: #137b6d;
+        --teal-dark: #0c5f56;
+        --gold: #f3bd32;
+        --line: #d4e0ea;
+        --dark: #0f1d2b;
+        --shadow: 0 24px 70px rgba(17, 29, 43, 0.13);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        border-bottom: 1px solid rgba(212, 224, 234, 0.9);
+        background: rgba(255, 253, 248, 0.94);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 24px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
+      .hero {
+        padding: 66px 0 56px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(360px, 0.9fr) minmax(520px, 1.1fr);
+        gap: 42px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid rgba(19, 123, 109, 0.25);
+        border-radius: 999px;
+        background: #f2fbf8;
+        color: var(--teal-dark);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 22px 0 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(48px, 6vw, 78px);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 620px;
+        margin: 26px 0 0;
+        color: var(--muted);
+        font-size: 22px;
+        line-height: 1.46;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 22px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .button.primary {
+        border-color: var(--teal);
+        background: var(--teal);
+        color: #fff;
+      }
+
+      .visual img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid rgba(17, 29, 43, 0.12);
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .strip {
+        border-block: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+      }
+
+      .workflow div {
+        min-height: 118px;
+        padding: 26px;
+        background: #fff;
+      }
+
+      .workflow strong {
+        display: block;
+        font-size: 18px;
+      }
+
+      .workflow span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .section h2 {
+        margin: 0;
+        font-size: clamp(32px, 4vw, 48px);
+        line-height: 1.06;
+        letter-spacing: 0;
+      }
+
+      .section p {
+        color: var(--muted);
+        font-size: 19px;
+        line-height: 1.58;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        padding: 24px;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 21px;
+      }
+
+      .card p {
+        margin-bottom: 0;
+        font-size: 17px;
+      }
+
+      .dark {
+        background: var(--dark);
+        color: #fff;
+      }
+
+      .dark p,
+      .dark li {
+        color: #c4d0dd;
+      }
+
+      .dark a {
+        color: #fff;
+      }
+
+      .links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 28px;
+      }
+
+      .links a {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 16px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.04);
+        text-decoration: none;
+        font-weight: 800;
+      }
+
+      .footer {
+        padding: 34px 0;
+        color: var(--muted);
+        background: #fff;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .footer a {
+        color: var(--teal-dark);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .workflow,
+        .grid,
+        .links {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .wrap {
+          width: min(100% - 28px, 1180px);
+        }
+
+        .nav-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 16px 0;
+        }
+
+        .nav-links {
+          gap: 14px;
+          font-size: 14px;
+        }
+
+        .hero {
+          padding-top: 34px;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="./" aria-label="FinalSnap home">
+          <img src="assets/store-icon-128.png" alt="">
+          <span>FinalSnap</span>
+        </a>
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="./">Home</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <span class="eyebrow">FinalSnap Chrome extension</span>
+            <h1>Clean long screenshots in seconds.</h1>
+            <p class="lead">
+              FinalSnap is a Chrome extension for people who need to turn messy
+              long webpage screenshots into clean evidence: capture, cut the
+              messy middle, reconnect the remaining page, and export PDF or
+              image records.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add FinalSnap to Chrome</a>
+              <a class="button" href="./">View homepage</a>
+            </div>
+          </div>
+          <div class="visual">
+            <img src="assets/cut-reconnect-export.png" alt="FinalSnap Chrome extension Cut Middle example showing a selected band removed and the screenshot reconnected.">
+          </div>
+        </div>
+      </section>
+
+      <section class="strip" aria-label="FinalSnap workflow">
+        <div class="wrap workflow">
+          <div>
+            <strong>Capture</strong>
+            <span>Take a full-page screenshot from the active browser tab.</span>
+          </div>
+          <div>
+            <strong>Cut</strong>
+            <span>Remove irrelevant horizontal bands from the middle.</span>
+          </div>
+          <div>
+            <strong>Reconnect</strong>
+            <span>The remaining page closes upward into a cleaner record.</span>
+          </div>
+          <div>
+            <strong>Export</strong>
+            <span>Save evidence as PDF, PNG, or JPEG.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2>More than full-page capture.</h2>
+          <p>
+            Go from a raw long screenshot to a shorter, cleaner record without
+            opening Photoshop or a design editor. FinalSnap focuses on the
+            cleanup work after capture, especially the messy middle sections
+            that make evidence harder to read.
+          </p>
+          <div class="grid">
+            <article class="card">
+              <h3>Cut Middle</h3>
+              <p>Remove ads, repeated navigation, oversized empty gaps, or unrelated page bands from the middle of a long screenshot.</p>
+            </article>
+            <article class="card">
+              <h3>Reconnect</h3>
+              <p>Close the remaining top and bottom content upward into a cleaner record, so the page becomes easier to review.</p>
+            </article>
+            <article class="card">
+              <h3>Export evidence</h3>
+              <p>Save the cleaned screenshot as PNG, JPEG, or PDF for immigration, legal, research, compliance, or reporting workflows.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark">
+        <div class="wrap">
+          <h2>Official FinalSnap links.</h2>
+          <p>
+            If you searched Google for FinalSnap, FinalSnap Chrome extension, or
+            FinalSnap screenshot cleanup, use these official product links.
+          </p>
+          <div class="links" aria-label="Official FinalSnap links">
+            <a href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Chrome Web Store</a>
+            <a href="./">FinalSnap homepage</a>
+            <a href="support.html">Support and feedback</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span>FinalSnap - clean long web screenshots.</span>
+        <span>
+          <a href="./">Home</a>
+          &nbsp; / &nbsp;
+          <a href="privacy.html">Privacy</a>
+          &nbsp; / &nbsp;
+          <a href="support.html">Support</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

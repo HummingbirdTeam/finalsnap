@@ -5,12 +5,22 @@ This repository hosts the free GitHub Pages public site for the FinalSnap Chrome
 Recommended Chrome Web Store URLs after GitHub Pages is enabled:
 
 - Homepage: `https://hummingbirdteam.github.io/finalsnap/`
+- Brand search landing page: `https://hummingbirdteam.github.io/finalsnap/chrome-extension.html`
 - Support: `https://hummingbirdteam.github.io/finalsnap/support.html`
 - Privacy policy: `https://hummingbirdteam.github.io/finalsnap/privacy.html`
 - Chrome Web Store item: `https://chromewebstore.google.com/detail/fbplgmgpdnogfbifbcmcadhfnnbcifcd`
+- Sitemap: `https://hummingbirdteam.github.io/finalsnap/sitemap.xml`
+- Robots: `https://hummingbirdteam.github.io/finalsnap/robots.txt`
 
 Chrome Web Store "Official URL" can remain `None` until the site is verified in Google Search Console.
 The Homepage URL and Support URL can use the GitHub Pages URLs above immediately.
+
+Brand-search SEO notes:
+
+- The homepage, brand search landing page, support page, and privacy page should repeat `FinalSnap` consistently.
+- The brand search landing page is intentionally narrow: answer searches such as `FinalSnap`, `FinalSnap Chrome extension`, `FinalSnap screenshot`, and `FinalSnap Chrome Web Store`.
+- Keep structured data, canonical links, Open Graph, Twitter cards, `sitemap.xml`, and `robots.txt` aligned when URLs or major public copy change.
+- Treat early Google indexing as a signal to strengthen brand ownership, not proof of stable demand.
 
 Homepage hero animation:
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hummingbirdteam.github.io/finalsnap/sitemap.xml
