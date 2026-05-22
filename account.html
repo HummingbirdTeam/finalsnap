@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FinalSnap Account</title>
-    <meta name="description" content="FinalSnap account portal entry for sign in, registration, plan, and billing.">
+    <meta name="description" content="FinalSnap account portal for sign in, registration, plan, billing, and rewards.">
     <link rel="canonical" href="https://hummingbirdteam.github.io/finalsnap/account.html">
     <link rel="icon" href="assets/store-icon-128.png">
     <style>
@@ -25,7 +25,10 @@
         color: var(--ink);
         background: var(--bg);
       }
-      .wrap { width: min(980px, calc(100% - 40px)); margin: 0 auto; }
+      .wrap {
+        width: min(820px, calc(100% - 40px));
+        margin: 0 auto;
+      }
       .nav {
         min-height: 72px;
         display: flex;
@@ -46,12 +49,17 @@
         height: 34px;
         border-radius: 9px;
       }
+      .nav a:not(.brand) {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 700;
+      }
       .hero {
         margin: 18px 0 36px;
         border: 1px solid var(--line);
         border-radius: 12px;
         background: var(--card);
-        padding: 24px;
+        padding: 28px;
       }
       h1 {
         margin: 0;
@@ -59,116 +67,54 @@
         line-height: 1.02;
       }
       p {
+        max-width: 640px;
         color: var(--muted);
         line-height: 1.6;
         font-size: 18px;
       }
-      .panel {
-        margin-top: 20px;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 16px;
-        background: #fcfeff;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-      label {
-        display: block;
-        font-weight: 700;
-        font-size: 14px;
-      }
-      input {
-        width: 100%;
-        min-height: 42px;
-        margin-top: 6px;
-        padding: 0 10px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        font: inherit;
-      }
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 14px;
-      }
-      .btn {
+      .status {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        min-height: 42px;
-        padding: 0 14px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        color: var(--ink);
-        text-decoration: none;
-        font-weight: 700;
-        background: #fff;
-      }
-      .btn.primary {
-        border-color: var(--brand);
-        background: var(--brand);
-        color: #fff;
+        min-height: 34px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: #e8f7f3;
+        color: var(--brand);
+        font-size: 14px;
+        font-weight: 800;
       }
       .foot {
         margin: 30px 0 50px;
         color: var(--muted);
         font-size: 14px;
       }
-      @media (max-width: 860px) {
-        .grid { grid-template-columns: 1fr; }
-      }
     </style>
   </head>
   <body>
     <div class="wrap">
       <nav class="nav">
-        <a class="brand" href="./chrome-extension.html">
-          <img src="assets/store-icon-128.png" alt="FinalSnap">
+        <a class="brand" href="./" aria-label="FinalSnap home">
+          <img src="assets/store-icon-128.png" alt="">
           <span>FinalSnap</span>
         </a>
-        <a class="btn" href="./chrome-extension.html">Chrome Extension</a>
+        <a href="./chrome-extension.html">Chrome Extension</a>
       </nav>
 
       <section class="hero">
-        <h1>Account & Plan</h1>
-        <p>Sign in, register, upgrade, and manage your FinalSnap plan in one place.</p>
-        <div class="panel">
-          <div class="grid">
-            <label>Account server URL
-              <input id="serverUrl" value="http://localhost:8799">
-            </label>
-            <label>Install ID (for extension-linked login)
-              <input id="installId" placeholder="rfp-...">
-            </label>
-          </div>
-          <div class="actions">
-            <a id="openAccount" class="btn primary" href="#">Open Account</a>
-            <a id="openGoogle" class="btn" href="#">Continue with Google</a>
-            <a id="openEmail" class="btn" href="#">Continue with Email</a>
-          </div>
-        </div>
+        <h1>FinalSnap Account</h1>
+        <p><span class="status" id="accountStatus">Opening your account</span></p>
+        <p>
+          Your account server decides what to show: signed-in users see account
+          and plan details; new users see sign in or registration.
+        </p>
       </section>
 
-      <p class="foot">For local staging, keep the URL as <code>http://localhost:8799</code>. Production account domain can replace this later.</p>
+      <p class="foot">Account, billing, and rewards are handled by the FinalSnap account server.</p>
     </div>
     <script>
-      const serverUrlInput = document.getElementById("serverUrl");
-      const installIdInput = document.getElementById("installId");
-      const openAccount = document.getElementById("openAccount");
-      const openGoogle = document.getElementById("openGoogle");
-      const openEmail = document.getElementById("openEmail");
-
+      const DEFAULT_ACCOUNT_SERVER = "http://localhost:8799";
       const params = new URLSearchParams(window.location.search);
-      if (params.get("server")) {
-        serverUrlInput.value = params.get("server");
-      }
-      if (params.get("install_id")) {
-        installIdInput.value = params.get("install_id");
-      }
+      const accountStatus = document.getElementById("accountStatus");
 
       function normalizeBaseUrl(value) {
         try {
@@ -182,26 +128,25 @@
         }
       }
 
-      function buildUrl(pathname) {
-        const base = normalizeBaseUrl(serverUrlInput.value);
-        if (!base) return "#";
-        const url = new URL(pathname, base);
-        const installId = String(installIdInput.value || "").trim();
-        if (installId) {
-          url.searchParams.set("install_id", installId);
+      function buildAccountUrl() {
+        const base = normalizeBaseUrl(params.get("server") || DEFAULT_ACCOUNT_SERVER);
+        if (!base) return "";
+        const url = new URL("/account", base);
+        for (const key of ["install_id", "installId", "account_id", "accountId", "session_token", "sessionToken", "email", "from", "return_to", "returnTo"]) {
+          const value = params.get(key);
+          if (value) {
+            url.searchParams.set(key, value);
+          }
         }
         return url.toString();
       }
 
-      function syncLinks() {
-        openAccount.href = buildUrl("/account");
-        openGoogle.href = buildUrl("/auth/google/start");
-        openEmail.href = buildUrl("/auth/magic/start");
+      const accountUrl = buildAccountUrl();
+      if (accountUrl) {
+        window.location.replace(accountUrl);
+      } else if (accountStatus) {
+        accountStatus.textContent = "Account server is not configured";
       }
-
-      serverUrlInput.addEventListener("input", syncLinks);
-      installIdInput.addEventListener("input", syncLinks);
-      syncLinks();
     </script>
   </body>
 </html>
