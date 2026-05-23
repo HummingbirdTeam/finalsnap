@@ -658,7 +658,7 @@
     </footer>
     <script>
       (function () {
-        var DEFAULT_ACCOUNT_SERVER = "http://localhost:8799";
+        var DEFAULT_ACCOUNT_SERVER = "https://auth.finalsnap.cc";
         var WEB_INSTALL_ID_KEY = "finalsnap.webInstallId";
         var googleScriptLoadingPromise = null;
         var googleOneTapReady = false;
@@ -687,15 +687,36 @@
           }
         }
 
+        function isLoopbackOrigin(origin) {
+          try {
+            var url = new URL(String(origin || ""));
+            var host = String(url.hostname || "").toLowerCase();
+            return host === "localhost" || host === "127.0.0.1" || host === "::1";
+          } catch (_error) {
+            return false;
+          }
+        }
+
+        function isPublicPageContext() {
+          var host = String(window.location.hostname || "").toLowerCase();
+          return host === "finalsnap.cc"
+            || host === "www.finalsnap.cc"
+            || host === "hummingbirdteam.github.io";
+        }
+
         function resolveAccountServerBase() {
           var params = new URLSearchParams(window.location.search);
-          return normalizeBaseUrl(
+          var resolved = normalizeBaseUrl(
             params.get("server")
             || params.get("account_server")
             || window.localStorage.getItem("finalsnapAccountServerBaseUrl")
             || window.localStorage.getItem("finalsnap.account.server")
             || DEFAULT_ACCOUNT_SERVER
           );
+          if (isPublicPageContext() && isLoopbackOrigin(resolved)) {
+            return DEFAULT_ACCOUNT_SERVER;
+          }
+          return resolved;
         }
 
         function createWebInstallId() {
