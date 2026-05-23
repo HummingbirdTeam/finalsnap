@@ -206,6 +206,16 @@
         font-weight: 800;
       }
 
+      .google-auth-btn {
+        gap: 10px;
+      }
+
+      .google-auth-logo {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
       .button.primary {
         border-color: var(--teal);
         background: var(--teal);
@@ -488,8 +498,7 @@
         <div class="nav-links" aria-label="Primary navigation">
           <a href="#features">Features</a>
           <a href="account.html">Account</a>
-          <a href="#privacy">Privacy</a>
-          <a href="support.html">Support</a>
+          <a href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
         </div>
       </div>
     </nav>
@@ -523,6 +532,7 @@
           <div class="actions hero-actions">
             <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
             <a class="button" href="#features">See what it does</a>
+            <a class="button google-auth-btn" data-google-login href="account.html"><img class="google-auth-logo" src="https://developers.google.com/identity/images/g-logo.png" alt="" aria-hidden="true"><span>Sign in with Google</span></a>
             <p class="access-note">
               If Chrome Web Store is unavailable in your region, contact
               <a href="mailto:finalsnapapp@gmail.com?subject=FinalSnap%20install%20help">finalsnapapp@gmail.com</a>
@@ -626,9 +636,6 @@
             <li>Optional Pro, tester, support, payment, or promotion workflows use only the minimal data needed for that workflow.</li>
             <li>FinalSnap does not load remote JavaScript or remote WebAssembly into the extension.</li>
           </ul>
-          <div class="actions">
-            <a class="button primary" href="privacy.html">Read privacy policy</a>
-          </div>
         </div>
       </section>
     </main>
@@ -641,9 +648,9 @@
           &nbsp; / &nbsp;
           <a href="account.html">Account</a>
           &nbsp; / &nbsp;
-          <a href="privacy.html">Privacy</a>
-          &nbsp; / &nbsp;
           <a href="support.html">Support</a>
+          &nbsp; / &nbsp;
+          <a href="privacy.html">Privacy</a>
           &nbsp; / &nbsp;
           <a href="mailto:finalsnapapp@gmail.com">Contact</a>
         </span>
@@ -651,10 +658,17 @@
     </footer>
     <script>
       (function () {
+        var DEFAULT_ACCOUNT_SERVER = "http://localhost:8799";
+        var WEB_INSTALL_ID_KEY = "finalsnap.webInstallId";
+        var ONE_TAP_PROMPTED_KEY = "finalsnap.oneTapPrompted";
+        var googleScriptLoadingPromise = null;
+        var googleOneTapReady = false;
+        var googleOneTapConfig = null;
+        var googleLoginButton = document.querySelector("[data-google-login]");
         var video = document.querySelector("[data-hero-video]");
-        if (!video) return;
 
         function playHeroVideo() {
+          if (!video) return;
           video.muted = true;
           var play = video.play && video.play();
           if (play && typeof play.catch === "function") {
@@ -664,7 +678,184 @@
           }
         }
 
-        if ("IntersectionObserver" in window) {
+        function normalizeBaseUrl(value) {
+          try {
+            var url = new URL(String(value || ""));
+            if (!["http:", "https:"].includes(url.protocol)) return "";
+            return url.origin;
+          } catch (_error) {
+            return "";
+          }
+        }
+
+        function resolveAccountServerBase() {
+          var params = new URLSearchParams(window.location.search);
+          return normalizeBaseUrl(
+            params.get("server")
+            || params.get("account_server")
+            || window.localStorage.getItem("finalsnapAccountServerBaseUrl")
+            || window.localStorage.getItem("finalsnap.account.server")
+            || DEFAULT_ACCOUNT_SERVER
+          );
+        }
+
+        function createWebInstallId() {
+          var random = Math.random().toString(36).slice(2, 10);
+          return "web_" + Date.now().toString(36) + "_" + random;
+        }
+
+        function getOrCreateInstallId() {
+          try {
+            var existing = String(window.localStorage.getItem(WEB_INSTALL_ID_KEY) || "").trim();
+            if (existing) return existing;
+            var created = createWebInstallId();
+            window.localStorage.setItem(WEB_INSTALL_ID_KEY, created);
+            return created;
+          } catch (_error) {
+            return createWebInstallId();
+          }
+        }
+
+        function buildAccountUrl(base, installId) {
+          var url = new URL("/account", base);
+          url.searchParams.set("install_id", installId);
+          url.searchParams.set("from", "website_home");
+          return url.toString();
+        }
+
+        function buildGoogleStartUrl(base, installId, returnTo) {
+          var url = new URL("/auth/google/start", base);
+          url.searchParams.set("install_id", installId);
+          if (returnTo) {
+            url.searchParams.set("return_to", returnTo);
+          }
+          return url.toString();
+        }
+
+        function loadGoogleIdentityScript() {
+          if (window.google && window.google.accounts && window.google.accounts.id) {
+            return Promise.resolve();
+          }
+          if (googleScriptLoadingPromise) {
+            return googleScriptLoadingPromise;
+          }
+          googleScriptLoadingPromise = new Promise(function (resolve, reject) {
+            var script = document.createElement("script");
+            script.src = "https://accounts.google.com/gsi/client";
+            script.async = true;
+            script.defer = true;
+            script.onload = function () { resolve(); };
+            script.onerror = function () { reject(new Error("Google Identity script failed to load")); };
+            document.head.appendChild(script);
+          });
+          return googleScriptLoadingPromise;
+        }
+
+        function fallbackGoogleLogin() {
+          if (!googleOneTapConfig || !googleOneTapConfig.oauthStartUrl) return;
+          window.location.assign(googleOneTapConfig.oauthStartUrl);
+        }
+
+        function handleGoogleCredentialResponse(response) {
+          if (!response || !response.credential || !googleOneTapConfig) {
+            fallbackGoogleLogin();
+            return;
+          }
+          fetch(googleOneTapConfig.verifyUrl, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              credential: response.credential,
+              install_id: googleOneTapConfig.installId,
+              return_to: googleOneTapConfig.returnTo
+            })
+          }).then(function (res) {
+            return res.json().catch(function () { return {}; });
+          }).then(function (payload) {
+            if (payload && payload.redirectTo) {
+              window.location.assign(payload.redirectTo);
+              return;
+            }
+            fallbackGoogleLogin();
+          }).catch(function () {
+            fallbackGoogleLogin();
+          });
+        }
+
+        function promptOneTap() {
+          if (!googleOneTapReady || !window.google || !window.google.accounts || !window.google.accounts.id) return;
+          try {
+            window.google.accounts.id.prompt();
+          } catch (_error) {
+            // Keep OAuth fallback available via button.
+          }
+        }
+
+        function promptOneTapOncePerSession() {
+          try {
+            if (window.sessionStorage.getItem(ONE_TAP_PROMPTED_KEY) === "1") return;
+            window.sessionStorage.setItem(ONE_TAP_PROMPTED_KEY, "1");
+          } catch (_error) {
+            // Continue even if sessionStorage is unavailable.
+          }
+          promptOneTap();
+        }
+
+        function prepareGoogleButton() {
+          if (!googleLoginButton || !googleOneTapConfig) return;
+          googleLoginButton.setAttribute("href", googleOneTapConfig.oauthStartUrl || "account.html");
+          googleLoginButton.addEventListener("click", function (event) {
+            if (!googleOneTapReady) return;
+            event.preventDefault();
+            promptOneTap();
+          });
+        }
+
+        function initGoogleOneTapOnHomepage() {
+          if (!googleLoginButton) return;
+          var serverBase = resolveAccountServerBase();
+          if (!serverBase) return;
+          var installId = getOrCreateInstallId();
+          var returnTo = buildAccountUrl(serverBase, installId);
+          var oauthStartUrl = buildGoogleStartUrl(serverBase, installId, returnTo);
+          googleLoginButton.setAttribute("href", oauthStartUrl);
+          var configUrl = new URL("/auth/google/one-tap/config", serverBase);
+          configUrl.searchParams.set("install_id", installId);
+          configUrl.searchParams.set("return_to", returnTo);
+
+          fetch(configUrl.toString(), {
+            method: "GET",
+            headers: { accept: "application/json" }
+          }).then(function (res) {
+            return res.json().catch(function () { return {}; });
+          }).then(function (config) {
+            if (!config || !config.enabled || !config.clientId) return;
+            googleOneTapConfig = {
+              clientId: config.clientId,
+              installId: config.installId || installId,
+              returnTo: config.returnTo || returnTo,
+              verifyUrl: new URL(config.oneTapPath || "/auth/google/one-tap", serverBase).toString(),
+              oauthStartUrl: buildGoogleStartUrl(serverBase, config.installId || installId, config.returnTo || returnTo)
+            };
+            prepareGoogleButton();
+            return loadGoogleIdentityScript().then(function () {
+              if (!window.google || !window.google.accounts || !window.google.accounts.id) return;
+              window.google.accounts.id.initialize({
+                client_id: googleOneTapConfig.clientId,
+                callback: handleGoogleCredentialResponse,
+                auto_select: true,
+                cancel_on_tap_outside: true,
+                use_fedcm_for_prompt: true
+              });
+              googleOneTapReady = true;
+              promptOneTapOncePerSession();
+            });
+          }).catch(function () {
+            // Keep fallback OAuth link only.
+          });
+        }
+
+        if ("IntersectionObserver" in window && video) {
           var observer = new IntersectionObserver(function (entries) {
             if (entries.some(function (entry) { return entry.isIntersecting; })) {
               playHeroVideo();
@@ -673,7 +864,11 @@
           observer.observe(video);
         }
 
-        window.addEventListener("load", playHeroVideo, { once: true });
+        window.addEventListener("load", function () {
+          playHeroVideo();
+          initGoogleOneTapOnHomepage();
+        }, { once: true });
+
         document.addEventListener("visibilitychange", function () {
           if (!document.hidden) playHeroVideo();
         });
