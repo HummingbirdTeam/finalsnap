@@ -660,7 +660,6 @@
       (function () {
         var DEFAULT_ACCOUNT_SERVER = "http://localhost:8799";
         var WEB_INSTALL_ID_KEY = "finalsnap.webInstallId";
-        var ONE_TAP_PROMPTED_KEY = "finalsnap.oneTapPrompted";
         var googleScriptLoadingPromise = null;
         var googleOneTapReady = false;
         var googleOneTapConfig = null;
@@ -791,34 +790,24 @@
           }
         }
 
-        function promptOneTapOncePerSession() {
-          try {
-            if (window.sessionStorage.getItem(ONE_TAP_PROMPTED_KEY) === "1") return;
-            window.sessionStorage.setItem(ONE_TAP_PROMPTED_KEY, "1");
-          } catch (_error) {
-            // Continue even if sessionStorage is unavailable.
-          }
-          promptOneTap();
-        }
-
         function prepareGoogleButton() {
           if (!googleLoginButton || !googleOneTapConfig) return;
           googleLoginButton.setAttribute("href", googleOneTapConfig.oauthStartUrl || "account.html");
-          googleLoginButton.addEventListener("click", function (event) {
-            if (!googleOneTapReady) return;
-            event.preventDefault();
+          // Keep One Tap as assistive UX, but never block explicit OAuth navigation.
+          googleLoginButton.addEventListener("mouseenter", function () {
             promptOneTap();
           });
         }
 
         function initGoogleOneTapOnHomepage() {
-          if (!googleLoginButton) return;
           var serverBase = resolveAccountServerBase();
           if (!serverBase) return;
           var installId = getOrCreateInstallId();
           var returnTo = buildAccountUrl(serverBase, installId);
           var oauthStartUrl = buildGoogleStartUrl(serverBase, installId, returnTo);
-          googleLoginButton.setAttribute("href", oauthStartUrl);
+          if (googleLoginButton) {
+            googleLoginButton.setAttribute("href", oauthStartUrl);
+          }
           var configUrl = new URL("/auth/google/one-tap/config", serverBase);
           configUrl.searchParams.set("install_id", installId);
           configUrl.searchParams.set("return_to", returnTo);
@@ -848,7 +837,7 @@
                 use_fedcm_for_prompt: true
               });
               googleOneTapReady = true;
-              promptOneTapOncePerSession();
+              promptOneTap();
             });
           }).catch(function () {
             // Keep fallback OAuth link only.
