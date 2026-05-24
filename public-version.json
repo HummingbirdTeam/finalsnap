@@ -1,0 +1,20 @@
+{
+  "app": "FinalSnap",
+  "target": "github-pages-fallback",
+  "generated_at": "2026-05-24T16:41:47.982Z",
+  "git": {
+    "commit": "30835faf045b609947b5bb7576f49f0a717df283",
+    "short_commit": "30835fa",
+    "branch": "HEAD",
+    "remote": "https://github.com/HummingbirdTeam/finalsnap-product.git",
+    "dirty": false,
+    "untracked_count": 0
+  },
+  "versions": {
+    "manifest": "0.3.327",
+    "server": "0.1.0"
+  },
+  "bundle": [
+    "policy-site"
+  ]
+}

@@ -6,6 +6,7 @@ Recommended Chrome Web Store URLs after GitHub Pages is enabled:
 
 - Homepage: `https://finalsnap.cc/`
 - Brand search landing page: `https://finalsnap.cc/chrome-extension.html`
+- Pricing: `https://finalsnap.cc/pricing.html`
 - Account entry: `https://finalsnap.cc/account.html`
 - Support: `https://finalsnap.cc/support.html`
 - Privacy policy: `https://finalsnap.cc/privacy.html`
@@ -14,7 +15,21 @@ Recommended Chrome Web Store URLs after GitHub Pages is enabled:
 - Robots: `https://finalsnap.cc/robots.txt`
 
 Chrome Web Store "Official URL" can remain `None` until the site is verified in Google Search Console.
-The Homepage URL and Support URL can use the GitHub Pages URLs above immediately.
+The Homepage URL and Support URL should use the public `finalsnap.cc` URLs above after the official-domain deploy is healthy.
+
+## Website Refresh Drafts
+
+Current local website draft:
+
+- Draft label: `website-real-plugin-demo-2026-05-24-a`
+- Baseline branch: `codex/gcp-mvp-backend`
+- Baseline commit: `f63701a`
+- Baseline manifest version: `0.3.327`
+- Scope: `policy-site/index.html`, shared `assets/site.css`, and the promoted real-plugin hero video assets generated from `real-plugin-demo-v1`
+- Rule: every visible CTA must point to a real page, Chrome Web Store URL, account handoff, or support email. No placeholder buttons, fake checkout buttons, decorative CTA controls, or public price promises without Account/server evidence.
+- Navigation rule: all public pages use the same predictable top nav, `Home / Pricing / Account / Add to Chrome`. Do not put `Demo`, `ROI`, `Support`, or `Privacy` in the global top nav; those stay as body CTAs or footer/utility links. Account stays in the top nav because it is the real plan/billing/trial/receipt entry, and top-nav Account should route to the real Account server rather than a visible trampoline.
+- Style target: concise product-proof pages with one idea per section, real product assets, and Silicon Valley-style restraint. Public copy should support the stable promise `Remove the messy middle.`
+- Planning source: `marketing/public-website-strategy-2026-05-24.md`
 
 Mainland China sharing note:
 
@@ -32,13 +47,14 @@ Brand-search SEO notes:
 
 Homepage hero animation:
 
-- `assets/finalsnap-magic-cut-v7-site-nologo.mp4`
-- `assets/finalsnap-magic-cut-v7-site-nologo-poster.png`
+- `assets/finalsnap-real-plugin-demo-v1.mp4`
+- `assets/finalsnap-real-plugin-demo-v1-poster.png`
 
-These are generated from `tools/render-finalsnap-magic-cut-promo-v7.py` and should stay aligned with the current short promo-video baseline in `marketing/promo-v7/`.
-The homepage uses the no-logo variant because the site navigation already carries the FinalSnap brand mark; avoid double logo exposure in the first viewport.
-The current hero animation mirrors the in-product Cut Middle effect: same-source band removal plus the real `.bandCutEffect` film-strip pull, closing lines, flash, and `Strip removed` badge.
-Headline typography in generated promo assets should use the selected pixel-cut reference look: the high-contrast New York-style display serif from the `Remove the messy middle.` headline. Do not switch these promo/store hero assets to `Sora` / `Archivo` unless a future sans-serif variant is explicitly requested.
+These are recorded by `tools/record-finalsnap-real-plugin-demo-v1.js` and promoted into `policy-site/assets/` so the public homepage uses the same source ledger and audit as `marketing/real-plugin-demo-v1/`.
+The homepage hero must solve long-screenshot legibility with a real-plugin, same-source camera path: global original screenshot -> local Cut Middle view -> Smart Erase payoff -> global processed screenshot.
+Do not replace the hero with stitched independent visuals. The top content should stay fixed, the unwanted band should collapse, and the lower content should move upward inside the same coordinate system.
+The homepage uses a site-specific no-logo composition because the site navigation already carries the FinalSnap brand mark; avoid double logo exposure in the first viewport.
+The current real-page source is a NASA Science article crop with usage and no-endorsement guardrails recorded in `marketing/real-plugin-demo-v1/source-ledger.md` and `marketing/realpage-hero-v1/source-ledger.md`. The earlier `finalsnap-realpage-hero-12s.*` and `finalsnap-cinematic-cut-hero-12s.*` assets remain source-quality and motion-proof fallbacks, not the current homepage recording.
 
 Standalone promo-video baseline:
 

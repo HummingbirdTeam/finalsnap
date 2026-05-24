@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FinalSnap | Clean Long Web Screenshots</title>
-    <meta name="description" content="FinalSnap removes messy middle sections from long web screenshots, reconnects the page, erases visual noise, and exports clean evidence as PDF or image.">
+    <title>FinalSnap | Remove the Messy Middle</title>
+    <meta name="description" content="FinalSnap cleans long web screenshots: cut unwanted middle sections, reconnect the page, erase noise, and export evidence as PDF or image.">
     <link rel="canonical" href="https://finalsnap.cc/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="FinalSnap">
-    <meta property="og:title" content="FinalSnap | Clean Long Web Screenshots">
-    <meta property="og:description" content="Remove the messy middle from long screenshots, reconnect the page, erase noise, and export clean evidence as PDF or image.">
+    <meta property="og:title" content="FinalSnap | Remove the Messy Middle">
+    <meta property="og:description" content="Full-page screenshots capture everything. FinalSnap turns them into clean evidence.">
     <meta property="og:url" content="https://finalsnap.cc/">
     <meta property="og:image" content="https://finalsnap.cc/assets/finalsnap-marquee.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FinalSnap | Clean Long Web Screenshots">
-    <meta name="twitter:description" content="Remove the messy middle from long screenshots, reconnect the page, erase noise, and export clean evidence as PDF or image.">
+    <meta name="twitter:title" content="FinalSnap | Remove the Messy Middle">
+    <meta name="twitter:description" content="Cut, reconnect, erase, and export clean evidence from long web screenshots.">
     <meta name="twitter:image" content="https://finalsnap.cc/assets/finalsnap-marquee.png">
     <link rel="icon" href="assets/store-icon-128.png">
+    <link rel="stylesheet" href="assets/site.css">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -24,663 +24,259 @@
         "name": "FinalSnap",
         "applicationCategory": "BrowserApplication",
         "operatingSystem": "Chrome",
-        "description": "FinalSnap removes messy middle sections from long web screenshots, reconnects the page, erases visual noise, and exports clean evidence as PDF or image.",
-        "url": "https://finalsnap.cc/",
+        "description": "FinalSnap cleans long web screenshots by cutting unwanted middle sections, reconnecting the page, erasing visual noise, and exporting evidence as PDF or image.",
         "image": "https://finalsnap.cc/assets/finalsnap-marquee.png",
+        "url": "https://finalsnap.cc/",
+        "softwareVersion": "0.3.327",
         "downloadUrl": "https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd",
-        "softwareVersion": "0.3.301",
-        "browserRequirements": "Google Chrome 109 or later",
-        "sameAs": [
-          "https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd",
-          "https://finalsnap.cc/chrome-extension.html",
-          "https://finalsnap.cc/account.html",
-          "https://finalsnap.cc/support.html",
-          "https://finalsnap.cc/privacy.html"
-        ]
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
       }
     </script>
-    <style>
-      :root {
-        color-scheme: light;
-        --ink: #111d2b;
-        --muted: #5f6e80;
-        --soft: #eef7f5;
-        --paper: #fffdf8;
-        --teal: #137b6d;
-        --teal-dark: #0c5f56;
-        --red: #de433d;
-        --gold: #f3bd32;
-        --line: #d4e0ea;
-        --shadow: 0 24px 70px rgba(17, 29, 43, 0.13);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: var(--ink);
-        background: var(--paper);
-      }
-
-      a {
-        color: inherit;
-      }
-
-      .wrap {
-        width: min(1460px, calc(100% - 40px));
-        margin: 0 auto;
-      }
-
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        border-bottom: 1px solid rgba(212, 224, 234, 0.9);
-        background: rgba(255, 253, 248, 0.92);
-        backdrop-filter: blur(16px);
-      }
-
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 76px;
-        gap: 20px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 24px;
-        font-weight: 800;
-        text-decoration: none;
-      }
-
-      .brand img {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 22px;
-        color: var(--muted);
-        font-weight: 700;
-      }
-
-      .nav-links a {
-        text-decoration: none;
-      }
-
-      .hero {
-        padding: 68px 0 42px;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(360px, 0.58fr) minmax(760px, 1.42fr);
-        grid-template-areas:
-          "copy visual"
-          "actions visual";
-        align-items: center;
-        gap: 42px;
-      }
-
-      .hero-copy {
-        grid-area: copy;
-      }
-
-      .hero-actions {
-        grid-area: actions;
-        align-self: start;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 34px;
-        padding: 0 12px;
-        border: 1px solid rgba(19, 123, 109, 0.25);
-        border-radius: 999px;
-        background: #f2fbf8;
-        color: var(--teal-dark);
-        font-size: 14px;
-        font-weight: 800;
-      }
-
-      h1 {
-        margin: 22px 0 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(54px, 6.4vw, 88px);
-        line-height: 0.95;
-        letter-spacing: 0;
-      }
-
-      .underline {
-        display: block;
-        width: 70px;
-        height: 8px;
-        margin-top: 22px;
-        border-radius: 999px;
-        background: var(--gold);
-      }
-
-      .lead {
-        max-width: 560px;
-        margin: 28px 0 0;
-        color: var(--muted);
-        font-size: 22px;
-        line-height: 1.45;
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 34px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 54px;
-        padding: 0 22px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        color: var(--ink);
-        background: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 800;
-      }
-
-      .google-auth-btn {
-        gap: 10px;
-      }
-
-      .google-auth-logo {
-        width: 18px;
-        height: 18px;
-        display: block;
-      }
-
-      .button.primary {
-        border-color: var(--teal);
-        background: var(--teal);
-        color: #fff;
-      }
-
-      .access-note {
-        max-width: 640px;
-        margin-top: 16px;
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.5;
-      }
-
-      .access-note a {
-        color: var(--teal-dark);
-        font-weight: 800;
-      }
-
-      .hero-visual {
-        position: relative;
-        grid-area: visual;
-      }
-
-      .hero-visual::before {
-        content: "";
-        position: absolute;
-        inset: -18px;
-        border-radius: 30px;
-        background:
-          radial-gradient(circle at 20% 15%, rgba(243, 189, 50, 0.2), transparent 38%),
-          linear-gradient(135deg, #e9f5f2, #fffdf8);
-        z-index: -1;
-      }
-
-      .hero-visual img,
-      .hero-visual video {
-        display: block;
-        width: 100%;
-        height: auto;
-        border: 1px solid rgba(17, 29, 43, 0.12);
-        border-radius: 16px;
-        box-shadow: var(--shadow);
-        background: #fffdf8;
-      }
-
-      .hero-visual video {
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-      }
-
-      .proof-strip {
-        border-block: 1px solid var(--line);
-        background: #fff;
-      }
-
-      .proof-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1px;
-      }
-
-      .proof-item {
-        min-height: 120px;
-        padding: 28px;
-        background: #fff;
-      }
-
-      .proof-item strong {
-        display: block;
-        font-size: 18px;
-      }
-
-      .proof-item span {
-        display: block;
-        margin-top: 8px;
-        color: var(--muted);
-        line-height: 1.45;
-      }
-
-      .section {
-        padding: 72px 0;
-      }
-
-      .section h2 {
-        margin: 0;
-        font-size: clamp(34px, 4vw, 54px);
-        line-height: 1.05;
-        letter-spacing: 0;
-      }
-
-      .section-lead {
-        max-width: 720px;
-        margin: 16px 0 0;
-        color: var(--muted);
-        font-size: 20px;
-        line-height: 1.5;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-        margin-top: 32px;
-      }
-
-      .feature {
-        min-height: 230px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: #fff;
-        padding: 28px;
-        box-shadow: 0 14px 40px rgba(17, 29, 43, 0.05);
-      }
-
-      .feature .mark {
-        display: grid;
-        place-items: center;
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-        background: var(--soft);
-        color: var(--teal-dark);
-        font-weight: 900;
-      }
-
-      .feature h3 {
-        margin: 22px 0 0;
-        font-size: 22px;
-      }
-
-      .feature p {
-        margin: 10px 0 0;
-        color: var(--muted);
-        line-height: 1.55;
-      }
-
-      .demo {
-        display: grid;
-        grid-template-columns: minmax(680px, 1.34fr) minmax(340px, 0.66fr);
-        gap: 34px;
-        align-items: center;
-      }
-
-      .demo img {
-        width: 100%;
-        border: 1px solid rgba(17, 29, 43, 0.12);
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-      }
-
-      .demo-copy {
-        padding: 10px 0 10px 10px;
-      }
-
-      .demo-copy p {
-        color: var(--muted);
-        font-size: 19px;
-        line-height: 1.55;
-      }
-
-      .trust {
-        background: #0f1d2b;
-        color: #fff;
-      }
-
-      .trust .section-lead,
-      .trust p,
-      .trust li {
-        color: #c4d0dd;
-      }
-
-      .trust ul {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-        list-style: none;
-        margin: 30px 0 0;
-        padding: 0;
-      }
-
-      .trust li {
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 16px;
-        padding: 22px;
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .footer {
-        padding: 36px 0;
-        color: var(--muted);
-        background: #fff;
-      }
-
-      .footer-inner {
-        display: flex;
-        justify-content: space-between;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-
-      .footer a {
-        color: var(--teal-dark);
-        font-weight: 800;
-        text-decoration: none;
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .demo {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-grid {
-          grid-template-areas:
-            "copy"
-            "visual"
-            "actions";
-          gap: 34px;
-        }
-
-        .feature-grid,
-        .proof-grid,
-        .trust ul {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 620px) {
-        .wrap {
-          width: min(100% - 28px, 1460px);
-        }
-
-        .nav-inner {
-          align-items: flex-start;
-          flex-direction: column;
-          padding: 16px 0;
-        }
-
-        .nav-links {
-          gap: 14px;
-          font-size: 14px;
-        }
-
-        .hero {
-          padding-top: 34px;
-        }
-
-        .lead {
-          margin-top: 22px;
-          font-size: 20px;
-        }
-
-        .hero-visual {
-          margin-top: -8px;
-        }
-
-        .hero-visual::before {
-          inset: -8px 0;
-          border-radius: 20px;
-        }
-
-        .actions {
-          flex-direction: column;
-        }
-
-        .button {
-          width: 100%;
-        }
-      }
-    </style>
   </head>
   <body>
-    <nav class="nav">
-      <div class="wrap nav-inner">
-        <a class="brand" href="./" aria-label="FinalSnap home">
-          <img src="assets/store-icon-128.png" alt="">
-          <span>FinalSnap</span>
-        </a>
-        <div class="nav-links" aria-label="Primary navigation">
-          <a href="#features">Features</a>
-          <a href="account.html">Account</a>
-          <a href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
-        </div>
-      </div>
-    </nav>
+    <div class="site-shell">
+      <header class="wrap">
+        <nav class="site-nav" aria-label="Primary">
+          <a class="brand" href="./" aria-label="FinalSnap home">
+            <img src="assets/store-icon-128.png" alt="">
+            <span>FinalSnap</span>
+          </a>
+          <div class="nav-links">
+            <a href="./">Home</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="https://finalsnap.cc/account?from=nav" data-account-link="nav">Account</a>
+            <a class="store-link" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
+          </div>
+        </nav>
+      </header>
 
-    <main>
-      <section class="hero">
-        <div class="wrap hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow">Full-page capture plus cleanup</span>
-            <h1>Remove the messy middle.</h1>
-            <span class="underline" aria-hidden="true"></span>
-            <p class="lead">
-              FinalSnap turns long webpage screenshots into clean evidence:
-              cut irrelevant middle bands, reconnect the page, erase visual
-              noise, and export a polished PDF or image.
-            </p>
-          </div>
-          <div class="hero-visual">
-            <video
-              data-hero-video
-              autoplay
-              muted
-              playsinline
-              preload="auto"
-              poster="assets/finalsnap-magic-cut-v7-site-nologo-poster.png"
-              aria-label="FinalSnap animation showing a selected middle strip being removed, the page reconnecting, and a shorter clean evidence screenshot.">
-              <source src="assets/finalsnap-magic-cut-v7-site-nologo.mp4" type="video/mp4">
-              FinalSnap removes the messy middle from long web screenshots and reconnects the remaining page.
-            </video>
-          </div>
-          <div class="actions hero-actions">
-            <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
-            <a class="button" href="#features">See what it does</a>
-            <a class="button google-auth-btn" data-google-login href="account.html"><img class="google-auth-logo" src="https://developers.google.com/identity/images/g-logo.png" alt="" aria-hidden="true"><span>Sign in with Google</span></a>
-            <p class="access-note">
-              If Chrome Web Store is unavailable in your region, contact
-              <a href="mailto:finalsnapapp@gmail.com?subject=FinalSnap%20install%20help">finalsnapapp@gmail.com</a>
-              for installation help. 中国大陆用户如果打不开商店链接，可以邮件联系我们获取安装帮助。
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="proof-strip" aria-label="FinalSnap workflow">
-        <div class="wrap proof-grid">
-          <div class="proof-item">
-            <strong>Capture</strong>
-            <span>Take a full-page screenshot from the active browser tab.</span>
-          </div>
-          <div class="proof-item">
-            <strong>Cut</strong>
-            <span>Remove irrelevant horizontal bands from the middle.</span>
-          </div>
-          <div class="proof-item">
-            <strong>Reconnect</strong>
-            <span>The remaining page closes upward into a cleaner record.</span>
-          </div>
-          <div class="proof-item">
-            <strong>Export</strong>
-            <span>Save evidence as PDF, PNG, or JPEG.</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="features" class="section">
-        <div class="wrap">
-          <h2>Built for evidence cleanup, not generic annotation.</h2>
-          <p class="section-lead">
-            Most screenshot tools stop after capture. FinalSnap focuses on the
-            work that usually happens afterward: removing visual clutter and
-            turning a raw long screenshot into something easier to review.
-          </p>
-          <div class="feature-grid">
-            <article class="feature">
-              <div class="mark">1</div>
-              <h3>Cut Middle</h3>
-              <p>
-                Remove ads, repeated blocks, empty gaps, unrelated sections, or
-                oversized page bands without opening a design editor.
+      <main>
+        <section id="demo" class="hero">
+          <div class="wrap hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow">Full-page capture is raw. FinalSnap is cleanup.</p>
+              <h1 class="display">Remove the messy middle.</h1>
+              <p class="lead">
+                Full-page screenshot tools capture everything. FinalSnap cuts
+                out the parts that do not belong, reconnects the page, erases
+                noise, and exports clean evidence.
               </p>
-            </article>
-            <article class="feature">
-              <div class="mark">2</div>
-              <h3>Smart cleanup</h3>
-              <p>
-                Crop edges, erase small distractions, and add source context
-                only when it helps the evidence.
-              </p>
-            </article>
-            <article class="feature">
-              <div class="mark">3</div>
-              <h3>Evidence export</h3>
-              <p>
-                Export clean PDF or image records for immigration, legal,
-                compliance, research, and professional documentation.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="wrap demo">
-          <img src="assets/cut-reconnect-export.png" alt="FinalSnap Cut Middle example with the selected band and the reconnected result.">
-          <div class="demo-copy">
-            <h2>Same evidence. Shorter page.</h2>
-            <p>
-              A long screenshot often contains the proof you need plus content
-              that makes the record harder to read. FinalSnap keeps the useful
-              evidence and removes the messy middle.
-            </p>
-            <div class="actions">
-              <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Install FinalSnap</a>
-              <a class="button" href="support.html">Get support</a>
-              <p class="access-note">
-                Chrome Web Store may be unavailable in some regions. If the
-                install link does not open, email
+              <div class="actions">
+                <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
+                <a class="button" href="#roi">Estimate ROI</a>
+              </div>
+              <p class="note">
+                If Chrome Web Store is unavailable in your region, use the
+                <a href="chrome-extension.html">install page</a> or email
                 <a href="mailto:finalsnapapp@gmail.com?subject=FinalSnap%20install%20help">finalsnapapp@gmail.com</a>.
               </p>
             </div>
+            <div class="media-card hero-demo" aria-label="FinalSnap real editor demo on a real webpage capture">
+              <div class="media-zoom is-cinematic">
+                <video autoplay muted loop playsinline poster="assets/finalsnap-real-plugin-demo-v1-poster.png">
+                  <source src="assets/finalsnap-real-plugin-demo-v1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="media-caption">
+                <strong>Real editor demo</strong>
+                <span>Recorded with FinalSnap 0.3.327 in a clean Chrome test profile.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section compact">
+          <div class="wrap">
+            <div class="section-heading">
+              <p class="eyebrow">The disease</p>
+              <h2>Capture is easy. Cleanup is the disaster.</h2>
+              <p>
+                The problem starts after the full-page screenshot exists:
+                the exported PDF is still too long, irrelevant middle sections
+                stay inside the evidence, and every manual fix gets worse when
+                you have many screenshots.
+              </p>
+            </div>
+            <div class="story-grid">
+              <article class="story-panel negative">
+                <h3>The old workflow</h3>
+                <ol>
+                  <li>Capture a full page and export a long PDF or image.</li>
+                  <li>Open another editor because the evidence is still messy.</li>
+                  <li>Cut a middle band, move lower content upward, repair the seam, and export again.</li>
+                  <li>Repeat for every screenshot until the evidence packet becomes busywork.</li>
+                </ol>
+              </article>
+              <article class="story-panel positive">
+                <h3>The FinalSnap workflow</h3>
+                <ol>
+                  <li>Capture the web page in Chrome.</li>
+                  <li>Cut unwanted middle sections from the long screenshot.</li>
+                  <li>Let the remaining page reconnect into a shorter record.</li>
+                  <li>Erase the remaining noise and export clean evidence.</li>
+                </ol>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="wrap split reverse">
+            <div class="media-card">
+              <img src="assets/cut-reconnect-export.png" alt="FinalSnap workflow showing Cut Middle, reconnect, and export.">
+            </div>
+            <div class="split-copy">
+              <p class="eyebrow">The product move</p>
+              <h2>Cut, reconnect, erase, export.</h2>
+              <p>
+                FinalSnap is not trying to be a generic annotation app. It owns
+                the cleanup layer between raw web capture and the final evidence
+                record.
+              </p>
+              <ul class="bullets">
+                <li>Cut Middle removes unwanted horizontal sections.</li>
+                <li>Reconnect closes the gap so the page still reads as one record.</li>
+                <li>Smart Erase removes smaller distractions that remain.</li>
+                <li>Export finishes the evidence as image or PDF.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="roi" class="section">
+          <div class="wrap">
+            <div class="section-heading">
+              <p class="eyebrow">ROI calculator</p>
+              <h2>When screenshots multiply, cleanup becomes cost.</h2>
+              <p>
+                Use your own numbers. This calculator estimates the monthly
+                time and labor value recovered when FinalSnap replaces manual
+                screenshot reconstruction.
+              </p>
+            </div>
+            <div class="roi-card">
+              <div class="roi-grid">
+                <div class="roi-field">
+                  <label for="roiScreenshots">Screenshots / month</label>
+                  <input id="roiScreenshots" type="number" min="1" value="30">
+                </div>
+                <div class="roi-field">
+                  <label for="roiManual">Manual minutes each</label>
+                  <input id="roiManual" type="number" min="0" step="0.25" value="4">
+                </div>
+                <div class="roi-field">
+                  <label for="roiFinalSnap">FinalSnap minutes each</label>
+                  <input id="roiFinalSnap" type="number" min="0" step="0.25" value="0.75">
+                </div>
+                <div class="roi-field">
+                  <label for="roiRate">Hourly value</label>
+                  <input id="roiRate" type="number" min="0" step="5" value="60">
+                </div>
+              </div>
+              <div class="roi-results" aria-live="polite">
+                <div class="roi-result">
+                  <span>Monthly time saved</span>
+                  <strong id="roiHours">1.6h</strong>
+                </div>
+                <div class="roi-result">
+                  <span>Monthly labor value</span>
+                  <strong id="roiValue">$98</strong>
+                </div>
+                <div class="roi-result">
+                  <span>Manual steps avoided</span>
+                  <strong id="roiSteps">120+</strong>
+                </div>
+              </div>
+              <p class="note">
+                This is an estimator, not a benchmark claim. Stronger public
+                claims need a measured sample set with median and p75 results.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="wrap split">
+            <div class="split-copy">
+              <p class="eyebrow">Same evidence, shorter record</p>
+              <h2>Cleaner evidence is easier to review.</h2>
+              <p>
+                A long screenshot can contain the right information and still be
+                painful to file. FinalSnap keeps the useful parts and removes
+                the middle noise that makes the record harder to read.
+              </p>
+              <div class="actions">
+                <a class="button primary" href="pricing.html">View Pricing</a>
+                <a class="button" href="privacy.html">Read Privacy</a>
+              </div>
+            </div>
+            <div class="media-card">
+              <img src="assets/before-after-comparison.png" alt="Before and after comparison showing a long screenshot turned into a shorter clean record.">
+            </div>
+          </div>
+        </section>
+
+        <section class="wrap">
+          <div class="dark-band">
+            <div class="section-heading">
+              <p class="eyebrow">Trust layer</p>
+              <h2>Powerful cleanup, with a way out.</h2>
+              <p>
+                Evidence cleanup needs confidence, not just magic. FinalSnap
+                keeps recovery paths visible so users are not trapped by automation.
+              </p>
+            </div>
+            <div class="card-grid">
+              <article class="card">
+                <span>Local-first</span>
+                <h3>Your screenshot stays in the browser by default.</h3>
+                <p>Account, support, payment, and analytics flows use only the data needed for that action.</p>
+              </article>
+              <article class="card">
+                <span>Reversible</span>
+                <h3>Undo and manual controls stay visible.</h3>
+                <p>Automation should save work, not trap you when a screenshot needs human judgment.</p>
+              </article>
+              <article class="card">
+                <span>Focused</span>
+                <h3>Clean evidence, not a design suite.</h3>
+                <p>Every public promise points back to cut, reconnect, erase, and export.</p>
+              </article>
+            </div>
+            <div class="actions">
+              <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
+              <a class="button" href="support.html">Get Support</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="wrap">
+          <p class="fineprint">FinalSnap turns raw long screenshots into cleaner evidence records.</p>
+          <div class="footer-links">
+            <a href="chrome-extension.html">Install Help</a>
+            <a href="support.html">Support</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="mailto:finalsnapapp@gmail.com">Contact</a>
           </div>
         </div>
-      </section>
-
-      <section id="privacy" class="section trust">
-        <div class="wrap">
-          <h2>Local-first by default.</h2>
-          <p class="section-lead">
-            FinalSnap is designed so screenshot image editing happens locally in
-            your browser. Screenshot image data is not uploaded to FinalSnap
-            servers by the extension.
-          </p>
-          <ul>
-            <li>Screenshot history and editor data stay in your Chrome profile unless you delete them.</li>
-            <li>Optional Pro, tester, support, payment, or promotion workflows use only the minimal data needed for that workflow.</li>
-            <li>FinalSnap does not load remote JavaScript or remote WebAssembly into the extension.</li>
-          </ul>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="wrap footer-inner">
-        <span>FinalSnap - clean long web screenshots.</span>
-        <span>
-          <a href="chrome-extension.html">Chrome Extension</a>
-          &nbsp; / &nbsp;
-          <a href="account.html">Account</a>
-          &nbsp; / &nbsp;
-          <a href="support.html">Support</a>
-          &nbsp; / &nbsp;
-          <a href="privacy.html">Privacy</a>
-          &nbsp; / &nbsp;
-          <a href="mailto:finalsnapapp@gmail.com">Contact</a>
-        </span>
-      </div>
-    </footer>
+      </footer>
+    </div>
     <script>
       (function () {
         var DEFAULT_ACCOUNT_SERVER = "https://finalsnap.cc";
-        var WEB_INSTALL_ID_KEY = "finalsnap.webInstallId";
-        var googleScriptLoadingPromise = null;
-        var googleOneTapReady = false;
-        var googleOneTapConfig = null;
-        var googleLoginButton = document.querySelector("[data-google-login]");
-        var video = document.querySelector("[data-hero-video]");
-
-        function playHeroVideo() {
-          if (!video) return;
-          video.muted = true;
-          var play = video.play && video.play();
-          if (play && typeof play.catch === "function") {
-            play.catch(function () {
-              video.setAttribute("controls", "");
-            });
-          }
-        }
 
         function normalizeBaseUrl(value) {
           try {
             var url = new URL(String(value || ""));
-            if (!["http:", "https:"].includes(url.protocol)) return "";
+            if (url.protocol !== "http:" && url.protocol !== "https:") {
+              return "";
+            }
             return url.origin;
           } catch (_error) {
             return "";
@@ -705,184 +301,65 @@
         }
 
         function resolveAccountServerBase() {
-          var params = new URLSearchParams(window.location.search);
-          var resolved = normalizeBaseUrl(
-            params.get("server")
-            || params.get("account_server")
-            || window.localStorage.getItem("finalsnapAccountServerBaseUrl")
-            || window.localStorage.getItem("finalsnap.account.server")
-            || DEFAULT_ACCOUNT_SERVER
-          );
-          if (isPublicPageContext() && isLoopbackOrigin(resolved)) {
+          var stored = "";
+          try {
+            stored = window.localStorage.getItem("finalsnapAccountServerBaseUrl") || "";
+          } catch (_error) {
+            stored = "";
+          }
+          var requested = normalizeBaseUrl(stored || DEFAULT_ACCOUNT_SERVER);
+          if (isPublicPageContext() && isLoopbackOrigin(requested)) {
             return DEFAULT_ACCOUNT_SERVER;
           }
-          return resolved;
+          return requested || DEFAULT_ACCOUNT_SERVER;
         }
 
-        function createWebInstallId() {
-          var random = Math.random().toString(36).slice(2, 10);
-          return "web_" + Date.now().toString(36) + "_" + random;
-        }
-
-        function getOrCreateInstallId() {
-          try {
-            var existing = String(window.localStorage.getItem(WEB_INSTALL_ID_KEY) || "").trim();
-            if (existing) return existing;
-            var created = createWebInstallId();
-            window.localStorage.setItem(WEB_INSTALL_ID_KEY, created);
-            return created;
-          } catch (_error) {
-            return createWebInstallId();
-          }
-        }
-
-        function buildAccountUrl(base, installId) {
-          var url = new URL("/account", base);
-          url.searchParams.set("install_id", installId);
-          url.searchParams.set("from", "website_home");
-          return url.toString();
-        }
-
-        function buildGoogleStartUrl(base, installId, returnTo) {
-          var url = new URL("/auth/google/start", base);
-          url.searchParams.set("install_id", installId);
-          if (returnTo) {
-            url.searchParams.set("return_to", returnTo);
+        function buildAccountUrl(source) {
+          var url = new URL("/account", resolveAccountServerBase());
+          if (source) {
+            url.searchParams.set("from", source);
           }
           return url.toString();
         }
 
-        function loadGoogleIdentityScript() {
-          if (window.google && window.google.accounts && window.google.accounts.id) {
-            return Promise.resolve();
-          }
-          if (googleScriptLoadingPromise) {
-            return googleScriptLoadingPromise;
-          }
-          googleScriptLoadingPromise = new Promise(function (resolve, reject) {
-            var script = document.createElement("script");
-            script.src = "https://accounts.google.com/gsi/client";
-            script.async = true;
-            script.defer = true;
-            script.onload = function () { resolve(); };
-            script.onerror = function () { reject(new Error("Google Identity script failed to load")); };
-            document.head.appendChild(script);
-          });
-          return googleScriptLoadingPromise;
-        }
-
-        function fallbackGoogleLogin() {
-          if (!googleOneTapConfig || !googleOneTapConfig.oauthStartUrl) return;
-          window.location.assign(googleOneTapConfig.oauthStartUrl);
-        }
-
-        function handleGoogleCredentialResponse(response) {
-          if (!response || !response.credential || !googleOneTapConfig) {
-            fallbackGoogleLogin();
-            return;
-          }
-          fetch(googleOneTapConfig.verifyUrl, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              credential: response.credential,
-              install_id: googleOneTapConfig.installId,
-              return_to: googleOneTapConfig.returnTo
-            })
-          }).then(function (res) {
-            return res.json().catch(function () { return {}; });
-          }).then(function (payload) {
-            if (payload && payload.redirectTo) {
-              window.location.assign(payload.redirectTo);
-              return;
-            }
-            fallbackGoogleLogin();
-          }).catch(function () {
-            fallbackGoogleLogin();
-          });
-        }
-
-        function promptOneTap() {
-          if (!googleOneTapReady || !window.google || !window.google.accounts || !window.google.accounts.id) return;
-          try {
-            window.google.accounts.id.prompt();
-          } catch (_error) {
-            // Keep OAuth fallback available via button.
-          }
-        }
-
-        function prepareGoogleButton() {
-          if (!googleLoginButton || !googleOneTapConfig) return;
-          googleLoginButton.setAttribute("href", googleOneTapConfig.oauthStartUrl || "account.html");
-          // Keep One Tap as assistive UX, but never block explicit OAuth navigation.
-          googleLoginButton.addEventListener("mouseenter", function () {
-            promptOneTap();
-          });
-        }
-
-        function initGoogleOneTapOnHomepage() {
-          var serverBase = resolveAccountServerBase();
-          if (!serverBase) return;
-          var installId = getOrCreateInstallId();
-          var returnTo = buildAccountUrl(serverBase, installId);
-          var oauthStartUrl = buildGoogleStartUrl(serverBase, installId, returnTo);
-          if (googleLoginButton) {
-            googleLoginButton.setAttribute("href", oauthStartUrl);
-          }
-          var configUrl = new URL("/auth/google/one-tap/config", serverBase);
-          configUrl.searchParams.set("install_id", installId);
-          configUrl.searchParams.set("return_to", returnTo);
-
-          fetch(configUrl.toString(), {
-            method: "GET",
-            headers: { accept: "application/json" }
-          }).then(function (res) {
-            return res.json().catch(function () { return {}; });
-          }).then(function (config) {
-            if (!config || !config.enabled || !config.clientId) return;
-            googleOneTapConfig = {
-              clientId: config.clientId,
-              installId: config.installId || installId,
-              returnTo: config.returnTo || returnTo,
-              verifyUrl: new URL(config.oneTapPath || "/auth/google/one-tap", serverBase).toString(),
-              oauthStartUrl: buildGoogleStartUrl(serverBase, config.installId || installId, config.returnTo || returnTo)
-            };
-            prepareGoogleButton();
-            return loadGoogleIdentityScript().then(function () {
-              if (!window.google || !window.google.accounts || !window.google.accounts.id) return;
-              window.google.accounts.id.initialize({
-                client_id: googleOneTapConfig.clientId,
-                callback: handleGoogleCredentialResponse,
-                auto_select: true,
-                cancel_on_tap_outside: true,
-                use_fedcm_for_prompt: true
-              });
-              googleOneTapReady = true;
-              promptOneTap();
-            });
-          }).catch(function () {
-            // Keep fallback OAuth link only.
-          });
-        }
-
-        if ("IntersectionObserver" in window && video) {
-          var observer = new IntersectionObserver(function (entries) {
-            if (entries.some(function (entry) { return entry.isIntersecting; })) {
-              playHeroVideo();
-            }
-          }, { threshold: 0.2 });
-          observer.observe(video);
-        }
-
-        window.addEventListener("load", function () {
-          playHeroVideo();
-          initGoogleOneTapOnHomepage();
-        }, { once: true });
-
-        document.addEventListener("visibilitychange", function () {
-          if (!document.hidden) playHeroVideo();
+        document.querySelectorAll("[data-account-link]").forEach(function (link) {
+          link.href = buildAccountUrl(link.getAttribute("data-account-link") || "home");
         });
-      })();
+
+        var screenshots = document.getElementById("roiScreenshots");
+        var manual = document.getElementById("roiManual");
+        var finalsnap = document.getElementById("roiFinalSnap");
+        var rate = document.getElementById("roiRate");
+        var hours = document.getElementById("roiHours");
+        var value = document.getElementById("roiValue");
+        var steps = document.getElementById("roiSteps");
+
+        function toNumber(input, fallback) {
+          var parsed = Number(input && input.value);
+          return Number.isFinite(parsed) ? Math.max(0, parsed) : fallback;
+        }
+
+        function updateRoi() {
+          var count = toNumber(screenshots, 0);
+          var manualMinutes = toNumber(manual, 0);
+          var finalsnapMinutes = toNumber(finalsnap, 0);
+          var hourlyRate = toNumber(rate, 0);
+          var savedMinutes = Math.max(0, (manualMinutes - finalsnapMinutes) * count);
+          var savedHours = savedMinutes / 60;
+          var laborValue = savedHours * hourlyRate;
+          var avoidedSteps = Math.round(count * 4);
+          hours.textContent = savedHours >= 10 ? savedHours.toFixed(0) + "h" : savedHours.toFixed(1) + "h";
+          value.textContent = "$" + Math.round(laborValue).toLocaleString();
+          steps.textContent = avoidedSteps.toLocaleString() + "+";
+        }
+
+        [screenshots, manual, finalsnap, rate].forEach(function (input) {
+          if (input) {
+            input.addEventListener("input", updateRoi);
+          }
+        });
+        updateRoi();
+      }());
     </script>
   </body>
 </html>
