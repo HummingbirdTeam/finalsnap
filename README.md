@@ -4,14 +4,14 @@ This repository hosts the free GitHub Pages public site for the FinalSnap Chrome
 
 Recommended Chrome Web Store URLs after GitHub Pages is enabled:
 
-- Homepage: `https://hummingbirdteam.github.io/finalsnap/`
-- Brand search landing page: `https://hummingbirdteam.github.io/finalsnap/chrome-extension.html`
-- Account entry: `https://hummingbirdteam.github.io/finalsnap/account.html`
-- Support: `https://hummingbirdteam.github.io/finalsnap/support.html`
-- Privacy policy: `https://hummingbirdteam.github.io/finalsnap/privacy.html`
+- Homepage: `https://finalsnap.cc/`
+- Brand search landing page: `https://finalsnap.cc/chrome-extension.html`
+- Account entry: `https://finalsnap.cc/account.html`
+- Support: `https://finalsnap.cc/support.html`
+- Privacy policy: `https://finalsnap.cc/privacy.html`
 - Chrome Web Store item: `https://chromewebstore.google.com/detail/fbplgmgpdnogfbifbcmcadhfnnbcifcd`
-- Sitemap: `https://hummingbirdteam.github.io/finalsnap/sitemap.xml`
-- Robots: `https://hummingbirdteam.github.io/finalsnap/robots.txt`
+- Sitemap: `https://finalsnap.cc/sitemap.xml`
+- Robots: `https://finalsnap.cc/robots.txt`
 
 Chrome Web Store "Official URL" can remain `None` until the site is verified in Google Search Console.
 The Homepage URL and Support URL can use the GitHub Pages URLs above immediately.
@@ -19,7 +19,7 @@ The Homepage URL and Support URL can use the GitHub Pages URLs above immediately
 Mainland China sharing note:
 
 - Do not send Chinese users only the raw Chrome Web Store URL. Chrome Web Store can be unavailable in mainland China even when the item URL itself is valid.
-- Share the brand landing page first: `https://hummingbirdteam.github.io/finalsnap/chrome-extension.html`.
+- Share the brand landing page first: `https://finalsnap.cc/chrome-extension.html`.
 - Keep Chrome Web Store as the official primary install source, but the landing page should show a clear support fallback for users whose region cannot open the store.
 - Do not publicly promise an alternate store, mirror, CRX, or zip install path until that path is actually prepared, tested, and supportable.
 

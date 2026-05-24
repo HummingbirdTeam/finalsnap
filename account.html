@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FinalSnap Account</title>
     <meta name="description" content="FinalSnap account portal for sign in, registration, plan, billing, and rewards.">
-    <link rel="canonical" href="https://hummingbirdteam.github.io/finalsnap/account.html">
+    <link rel="canonical" href="https://finalsnap.cc/account.html">
     <link rel="icon" href="assets/store-icon-128.png">
     <style>
       :root {
@@ -112,7 +112,7 @@
       <p class="foot">Account, billing, and rewards are handled by the FinalSnap account server.</p>
     </div>
     <script>
-      const DEFAULT_ACCOUNT_SERVER = "https://auth.finalsnap.cc";
+      const DEFAULT_ACCOUNT_SERVER = "https://finalsnap.cc";
       const params = new URLSearchParams(window.location.search);
       const accountStatus = document.getElementById("accountStatus");
 
@@ -128,8 +128,28 @@
         }
       }
 
+      function isLoopbackOrigin(origin) {
+        try {
+          const url = new URL(String(origin || ""));
+          const host = String(url.hostname || "").toLowerCase();
+          return host === "localhost" || host === "127.0.0.1" || host === "::1";
+        } catch (_error) {
+          return false;
+        }
+      }
+
+      function isPublicPageContext() {
+        const host = String(window.location.hostname || "").toLowerCase();
+        return host === "finalsnap.cc"
+          || host === "www.finalsnap.cc"
+          || host === "hummingbirdteam.github.io";
+      }
+
       function buildAccountUrl() {
-        const base = normalizeBaseUrl(params.get("server") || DEFAULT_ACCOUNT_SERVER);
+        const requestedBase = normalizeBaseUrl(params.get("server") || DEFAULT_ACCOUNT_SERVER);
+        const base = (isPublicPageContext() && isLoopbackOrigin(requestedBase))
+          ? DEFAULT_ACCOUNT_SERVER
+          : requestedBase;
         if (!base) return "";
         const url = new URL("/account", base);
         for (const key of ["install_id", "installId", "account_id", "accountId", "session_token", "sessionToken", "email", "from", "return_to", "returnTo"]) {
