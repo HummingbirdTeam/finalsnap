@@ -1,20 +1,20 @@
 {
   "app": "FinalSnap",
-  "target": "finalsnap.cc",
-  "generated_at": "2026-06-03T18:13:24.831Z",
+  "target": "github-pages-fallback",
+  "generated_at": "2026-06-03T19:11:22.743Z",
   "git": {
     "commit": "038928c100b39781947050895446d236fc773574",
     "short_commit": "038928c",
     "branch": "codex/gcp-mvp-backend",
     "remote": "https://github.com/HummingbirdTeam/finalsnap-product.git",
     "dirty": true,
-    "untracked_count": 18347
+    "untracked_count": 18352
   },
   "versions": {
     "manifest": "0.3.380",
     "server": "0.1.0"
   },
   "bundle": [
-    "policy-site-v284-user-copy-clips-cleanhero"
+    "policy-site-v284-marker-shift-clips"
   ]
 }
