@@ -1,7 +1,7 @@
 {
   "app": "FinalSnap",
   "target": "finalsnap.cc",
-  "generated_at": "2026-06-03T17:34:47.139Z",
+  "generated_at": "2026-06-03T18:03:57.870Z",
   "git": {
     "commit": "038928c100b39781947050895446d236fc773574",
     "short_commit": "038928c",
@@ -15,6 +15,6 @@
     "server": "0.1.0"
   },
   "bundle": [
-    "policy-site-v284-fullscreen-fix"
+    "policy-site-v284-user-copy-clips"
   ]
 }

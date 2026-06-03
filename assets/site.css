@@ -298,7 +298,9 @@ a {
 
 .hero-video-stage:fullscreen,
 .hero-demo:fullscreen,
-.hero-demo.is-fullscreen-fallback {
+.hero-demo.is-fullscreen-fallback,
+.clip-card:fullscreen,
+.clip-card.is-fullscreen-fallback {
   display: grid;
   place-items: center;
   width: 100vw;
@@ -312,7 +314,8 @@ a {
   transform: none;
 }
 
-.hero-demo.is-fullscreen-fallback {
+.hero-demo.is-fullscreen-fallback,
+.clip-card.is-fullscreen-fallback {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -327,28 +330,45 @@ a {
   max-height: none;
   border-radius: 0;
   background: #eef4f3;
-  object-fit: cover;
-  transform: scale(1.035);
+  object-fit: contain;
+  transform: none;
   transform-origin: center;
+}
+
+.clip-card:fullscreen video,
+.clip-card.is-fullscreen-fallback video {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  background: #eef4f3;
+  object-fit: contain;
+  transform: none;
 }
 
 .hero-demo:fullscreen .media-zoom.is-cinematic video,
 .hero-video-stage:fullscreen.media-zoom.is-cinematic video,
 .hero-demo.is-fullscreen-fallback .media-zoom.is-cinematic video {
-  object-fit: cover;
-  transform: scale(1.035);
+  object-fit: contain;
+  transform: none;
 }
 
 .hero-video-stage:fullscreen .video-fullscreen,
 .hero-demo:fullscreen .video-fullscreen,
 .hero-demo:fullscreen .media-caption,
 .hero-demo.is-fullscreen-fallback .video-fullscreen,
-.hero-demo.is-fullscreen-fallback .media-caption {
+.hero-demo.is-fullscreen-fallback .media-caption,
+.clip-card:fullscreen .video-fullscreen,
+.clip-card:fullscreen div,
+.clip-card.is-fullscreen-fallback .video-fullscreen,
+.clip-card.is-fullscreen-fallback div {
   display: none;
 }
 
 .hero-video-stage:fullscreen::backdrop,
-.hero-demo:fullscreen::backdrop {
+.hero-demo:fullscreen::backdrop,
+.clip-card:fullscreen::backdrop {
   background: #eef4f3;
 }
 
@@ -533,6 +553,7 @@ body.is-video-fullscreen-fallback {
 }
 
 .clip-card {
+  position: relative;
   overflow: hidden;
   border: 1px solid rgba(16, 24, 32, 0.1);
   border-radius: var(--radius-md);
@@ -545,6 +566,15 @@ body.is-video-fullscreen-fallback {
   aspect-ratio: 1710 / 1072;
   background: #eef4f3;
   object-fit: cover;
+}
+
+.clip-fullscreen {
+  right: 12px;
+  bottom: auto;
+  top: 12px;
+  min-height: 34px;
+  padding: 0 11px;
+  font-size: 11px;
 }
 
 .clip-card div {
