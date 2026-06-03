@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FinalSnap | Remove the Messy Middle</title>
-    <meta name="description" content="FinalSnap cleans long web screenshots: cut unwanted middle sections, reconnect the page, erase noise, and export evidence as PDF or image.">
+    <meta name="description" content="FinalSnap cleans long web screenshots: cut unwanted middle bands, reconnect the page, erase noise, and export evidence as PDF or image.">
     <link rel="canonical" href="https://finalsnap.cc/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="FinalSnap | Remove the Messy Middle">
@@ -16,7 +16,7 @@
     <meta name="twitter:description" content="Cut, reconnect, erase, and export clean evidence from long web screenshots.">
     <meta name="twitter:image" content="https://finalsnap.cc/assets/finalsnap-marquee.png">
     <link rel="icon" href="assets/store-icon-128.png">
-    <link rel="stylesheet" href="assets/site.css">
+    <link rel="stylesheet" href="assets/site.css?v=20260603-v284-site-audit">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -24,10 +24,10 @@
         "name": "FinalSnap",
         "applicationCategory": "BrowserApplication",
         "operatingSystem": "Chrome",
-        "description": "FinalSnap cleans long web screenshots by cutting unwanted middle sections, reconnecting the page, erasing visual noise, and exporting evidence as PDF or image.",
+        "description": "FinalSnap cleans long web screenshots by cutting unwanted middle bands, reconnecting the page, erasing visual noise, and exporting evidence as PDF or image.",
         "image": "https://finalsnap.cc/assets/finalsnap-marquee.png",
         "url": "https://finalsnap.cc/",
-        "softwareVersion": "0.3.327",
+        "softwareVersion": "0.3.380",
         "downloadUrl": "https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd",
         "offers": {
           "@type": "Offer",
@@ -47,6 +47,7 @@
           </a>
           <div class="nav-links">
             <a href="./">Home</a>
+            <a href="cases/caseroom-visual-record/index.html">Test Case</a>
             <a href="pricing.html">Pricing</a>
             <a href="https://finalsnap.cc/account?from=nav" data-account-link="nav">Account</a>
             <a class="store-link" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
@@ -59,7 +60,11 @@
           <div class="wrap hero-grid">
             <div class="hero-copy">
               <p class="eyebrow">Full-page capture is raw. FinalSnap is cleanup.</p>
-              <h1 class="display">Remove the messy middle.</h1>
+              <h1 class="display">
+                <span>Remove</span>
+                <span>the <span class="messy-word" data-word="messy">messy</span></span>
+                <span>middle.</span>
+              </h1>
               <p class="lead">
                 Full-page screenshot tools capture everything. FinalSnap cuts
                 out the parts that do not belong, reconnects the page, erases
@@ -67,7 +72,7 @@
               </p>
               <div class="actions">
                 <a class="button primary" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
-                <a class="button" href="#roi">Estimate ROI</a>
+                <a class="button" href="cases/caseroom-visual-record/index.html">Try a Test Case</a>
               </div>
               <p class="note">
                 If Chrome Web Store is unavailable in your region, use the
@@ -75,15 +80,19 @@
                 <a href="mailto:finalsnapapp@gmail.com?subject=FinalSnap%20install%20help">finalsnapapp@gmail.com</a>.
               </p>
             </div>
-            <div class="media-card hero-demo" aria-label="FinalSnap real editor demo on a real webpage capture">
-              <div class="media-zoom is-cinematic">
-                <video autoplay muted loop playsinline poster="assets/finalsnap-real-plugin-demo-v1-poster.png?v=20260524-cut620-icons">
-                  <source src="assets/finalsnap-real-plugin-demo-v1.mp4?v=20260524-cut620-icons" type="video/mp4">
+            <div class="media-card hero-demo" aria-label="FinalSnap real editor demo on a first-party CaseRoom test page capture">
+              <div class="media-zoom is-cinematic hero-video-stage">
+                <video autoplay muted loop playsinline poster="assets/finalsnap-caseroom-workflow-v284-poster.png?v=20260603-v284">
+                  <source src="assets/finalsnap-caseroom-workflow-v284.mp4?v=20260603-v284" type="video/mp4">
                 </video>
+                <button class="video-fullscreen" type="button" aria-label="Watch FinalSnap demo fullscreen" data-fullscreen-target=".hero-video-stage">
+                  <span aria-hidden="true" class="fullscreen-corners"></span>
+                  <span>Fullscreen</span>
+                </button>
               </div>
               <div class="media-caption">
                 <strong>Real editor demo</strong>
-                <span>Recorded with FinalSnap 0.3.327 in a clean Chrome test profile.</span>
+                <span>Recorded with FinalSnap 0.3.380 on a first-party CaseRoom test page.</span>
               </div>
             </div>
           </div>
@@ -96,7 +105,7 @@
               <h2>Capture is easy. Cleanup is the disaster.</h2>
               <p>
                 The problem starts after the full-page screenshot exists:
-                the exported PDF is still too long, irrelevant middle sections
+                the exported PDF is still too long, irrelevant middle bands
                 stay inside the evidence, and every manual fix gets worse when
                 you have many screenshots.
               </p>
@@ -115,7 +124,7 @@
                 <h3>The FinalSnap workflow</h3>
                 <ol>
                   <li>Capture the web page in Chrome.</li>
-                  <li>Cut unwanted middle sections from the long screenshot.</li>
+                  <li>Cut unwanted middle bands from the long screenshot.</li>
                   <li>Let the remaining page reconnect into a shorter record.</li>
                   <li>Erase the remaining noise and export clean evidence.</li>
                 </ol>
@@ -127,7 +136,34 @@
         <section class="section">
           <div class="wrap split reverse">
             <div class="media-card">
-              <img src="assets/cut-reconnect-export.png" alt="FinalSnap workflow showing Cut Middle, reconnect, and export.">
+              <img src="cases/caseroom-visual-record/assets/studio-editorial-wide.png" alt="CaseRoom sample page for testing FinalSnap crop, cut, erase, and export.">
+            </div>
+            <div class="split-copy">
+              <p class="eyebrow">Try it yourself</p>
+              <h2 class="case-section-title">Open a realistic page and clean it with FinalSnap.</h2>
+              <p>
+                The CaseRoom sample is first-party test material with a real
+                photo, dates that should stay, one unrelated middle band to cut,
+                and one small marker to erase.
+              </p>
+              <ul class="bullets">
+                <li>Capture the full browser page first.</li>
+                <li>Drag all four crop borders before applying Crop.</li>
+                <li>Cut the webinar invitation in one Cut Middle move.</li>
+                <li>Erase only the small marker while preserving the dates.</li>
+              </ul>
+              <div class="actions">
+                <a class="button primary" href="cases/caseroom-visual-record/index.html">Open Test Case</a>
+                <a class="button" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="wrap split reverse">
+            <div class="media-card">
+              <img src="assets/finalsnap-v284-clip-cut-middle-reconnect-poster.png" alt="FinalSnap editor showing the Cut Middle reconnect workflow on the CaseRoom test page.">
             </div>
             <div class="split-copy">
               <p class="eyebrow">The product move</p>
@@ -147,6 +183,57 @@
           </div>
         </section>
 
+        <section class="section compact">
+          <div class="wrap">
+            <div class="section-heading">
+              <p class="eyebrow">Function clips</p>
+              <h2>Watch each cleanup move separately.</h2>
+              <p>
+                These clips come from the same v284 real-browser recording as
+                the hero video, using first-party CaseRoom test material.
+              </p>
+            </div>
+            <div class="clip-grid">
+              <article class="clip-card">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/finalsnap-v284-clip-crop-edges-poster.png?v=20260603-v284">
+                  <source src="assets/finalsnap-v284-clip-crop-edges.mp4?v=20260603-v284" type="video/mp4">
+                </video>
+                <div>
+                  <span>Crop</span>
+                  <h3>Drag the real screenshot edges before applying Crop.</h3>
+                </div>
+              </article>
+              <article class="clip-card">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/finalsnap-v284-clip-cut-middle-reconnect-poster.png?v=20260603-v284">
+                  <source src="assets/finalsnap-v284-clip-cut-middle-reconnect.mp4?v=20260603-v284" type="video/mp4">
+                </video>
+                <div>
+                  <span>Cut Middle</span>
+                  <h3>Remove the unrelated band and reconnect the record.</h3>
+                </div>
+              </article>
+              <article class="clip-card">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/finalsnap-v284-clip-smart-erase-noise-poster.png?v=20260603-v284">
+                  <source src="assets/finalsnap-v284-clip-smart-erase-noise.mp4?v=20260603-v284" type="video/mp4">
+                </video>
+                <div>
+                  <span>Erase</span>
+                  <h3>Erase the small visual marker while preserving dates.</h3>
+                </div>
+              </article>
+              <article class="clip-card">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/finalsnap-v284-clip-before-after-clean-record-poster.png?v=20260603-v284">
+                  <source src="assets/finalsnap-v284-clip-before-after-clean-record.mp4?v=20260603-v284" type="video/mp4">
+                </video>
+                <div>
+                  <span>Before / After</span>
+                  <h3>Compare the raw long capture with the clean record.</h3>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section id="roi" class="section">
           <div class="wrap">
             <div class="section-heading">
@@ -159,22 +246,34 @@
               </p>
             </div>
             <div class="roi-card">
+              <div class="roi-guide">
+                <strong>Use it in three steps</strong>
+                <ol>
+                  <li>Enter how many screenshots you clean each month.</li>
+                  <li>Enter the minutes one screenshot takes in the old manual workflow.</li>
+                  <li>Keep or adjust the FinalSnap minutes and your hourly value.</li>
+                </ol>
+              </div>
               <div class="roi-grid">
                 <div class="roi-field">
                   <label for="roiScreenshots">Screenshots / month</label>
                   <input id="roiScreenshots" type="number" min="1" value="30">
+                  <span class="field-hint">Example: 30 evidence screenshots.</span>
                 </div>
                 <div class="roi-field">
                   <label for="roiManual">Manual minutes each</label>
                   <input id="roiManual" type="number" min="0" step="0.25" value="4">
+                  <span class="field-hint">Old path: crop, cut, move, repair, export.</span>
                 </div>
                 <div class="roi-field">
                   <label for="roiFinalSnap">FinalSnap minutes each</label>
                   <input id="roiFinalSnap" type="number" min="0" step="0.25" value="0.75">
+                  <span class="field-hint">New path: capture, crop, cut, erase, export.</span>
                 </div>
                 <div class="roi-field">
                   <label for="roiRate">Hourly value</label>
                   <input id="roiRate" type="number" min="0" step="5" value="60">
+                  <span class="field-hint">Use your rate, billable value, or internal cost.</span>
                 </div>
               </div>
               <div class="roi-results" aria-live="polite">
@@ -191,6 +290,11 @@
                   <strong id="roiSteps">120+</strong>
                 </div>
               </div>
+              <p class="roi-summary" id="roiSummary" aria-live="polite"></p>
+              <p class="roi-formula">
+                Time saved = screenshots x (manual minutes - FinalSnap minutes).
+                Labor value = time saved x hourly value.
+              </p>
               <p class="note">
                 This is an estimator, not a benchmark claim. Stronger public
                 claims need a measured sample set with median and p75 results.
@@ -215,13 +319,13 @@
               </div>
             </div>
             <div class="media-card">
-              <img src="assets/before-after-comparison.png" alt="Before and after comparison showing a long screenshot turned into a shorter clean record.">
+              <img src="assets/finalsnap-v284-comparison-after-cut.png" alt="CaseRoom page after FinalSnap Cut Middle reconnects the clean record.">
             </div>
           </div>
         </section>
 
-        <section class="wrap">
-          <div class="dark-band">
+        <section class="section trust-section">
+          <div class="wrap">
             <div class="section-heading">
               <p class="eyebrow">Trust layer</p>
               <h2>Powerful cleanup, with a way out.</h2>
@@ -326,6 +430,34 @@
           link.href = buildAccountUrl(link.getAttribute("data-account-link") || "home");
         });
 
+        document.querySelectorAll("[data-fullscreen-target]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var selector = button.getAttribute("data-fullscreen-target");
+            var target = selector ? document.querySelector(selector) : null;
+            var video = target ? target.querySelector("video") : null;
+            if (!target || !video) {
+              return;
+            }
+            if (document.fullscreenElement) {
+              document.exitFullscreen();
+              return;
+            }
+            if (target.requestFullscreen) {
+              target.requestFullscreen();
+              return;
+            }
+            if (video.webkitEnterFullscreen) {
+              video.webkitEnterFullscreen();
+              return;
+            }
+            var sourceNode = video.querySelector("source");
+            var source = video.currentSrc || (sourceNode ? sourceNode.src : "");
+            if (source) {
+              window.open(source, "_blank", "noopener");
+            }
+          });
+        });
+
         var screenshots = document.getElementById("roiScreenshots");
         var manual = document.getElementById("roiManual");
         var finalsnap = document.getElementById("roiFinalSnap");
@@ -333,6 +465,7 @@
         var hours = document.getElementById("roiHours");
         var value = document.getElementById("roiValue");
         var steps = document.getElementById("roiSteps");
+        var summary = document.getElementById("roiSummary");
 
         function toNumber(input, fallback) {
           var parsed = Number(input && input.value);
@@ -351,6 +484,16 @@
           hours.textContent = savedHours >= 10 ? savedHours.toFixed(0) + "h" : savedHours.toFixed(1) + "h";
           value.textContent = "$" + Math.round(laborValue).toLocaleString();
           steps.textContent = avoidedSteps.toLocaleString() + "+";
+          if (summary) {
+            var screenshotsLabel = count.toLocaleString() + " screenshot" + (count === 1 ? "" : "s");
+            summary.textContent = screenshotsLabel + " per month at "
+              + manualMinutes.toFixed(2).replace(/\.00$/, "")
+              + " manual minutes each vs "
+              + finalsnapMinutes.toFixed(2).replace(/\.00$/, "")
+              + " FinalSnap minutes saves about "
+              + hours.textContent
+              + " per month.";
+          }
         }
 
         [screenshots, manual, finalsnap, rate].forEach(function (input) {

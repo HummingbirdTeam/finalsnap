@@ -1,17 +1,17 @@
 {
   "app": "FinalSnap",
   "target": "github-pages-fallback",
-  "generated_at": "2026-05-24T17:30:22.314Z",
+  "generated_at": "2026-06-03T09:50:59.830Z",
   "git": {
-    "commit": "caded28a63201e890c0d253a60f4443853edcf43",
-    "short_commit": "caded28",
-    "branch": "HEAD",
+    "commit": "038928c100b39781947050895446d236fc773574",
+    "short_commit": "038928c",
+    "branch": "codex/gcp-mvp-backend",
     "remote": "https://github.com/HummingbirdTeam/finalsnap-product.git",
-    "dirty": false,
-    "untracked_count": 0
+    "dirty": true,
+    "untracked_count": 18345
   },
   "versions": {
-    "manifest": "0.3.327",
+    "manifest": "0.3.380",
     "server": "0.1.0"
   },
   "bundle": [

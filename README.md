@@ -31,6 +31,16 @@ Current local website draft:
 - Style target: concise product-proof pages with one idea per section, real product assets, and Silicon Valley-style restraint. Public copy should support the stable promise `Remove the messy middle.`
 - Planning source: `marketing/public-website-strategy-2026-05-24.md`
 
+Homepage hero replacement (2026-06-03):
+
+- Draft label: `cinematic-flow-v284-sandbox`
+- Product version: `0.3.380`
+- Source: first-party CaseRoom visual evidence packet with source ledger in `marketing/source-ledgers/finalsnap-editorial-record-v21.md`
+- Homepage assets: `assets/finalsnap-caseroom-workflow-v284.mp4`, `assets/finalsnap-caseroom-workflow-v284-poster.png`, and `assets/finalsnap-caseroom-workflow-v284-contact-sheet.jpg`
+- Visual correction: no capture popup pollution, browser-maximized recording, visible four-border Crop, one-pass Cut Middle with only a small breath above the next card, Smart Erase restored, red before/after callouts inside viewport, and browserless logo finale.
+- Review source: `marketing/cinematic-flow-v284-sandbox/storyboard.md`
+- Account boundary: this homepage/video promotion must not change Account server, Account route, payment flow, or account handoff behavior.
+
 Mainland China sharing note:
 
 - Do not send Chinese users only the raw Chrome Web Store URL. Chrome Web Store can be unavailable in mainland China even when the item URL itself is valid.
@@ -45,25 +55,16 @@ Brand-search SEO notes:
 - Keep structured data, canonical links, Open Graph, Twitter cards, `sitemap.xml`, and `robots.txt` aligned when URLs or major public copy change.
 - Treat early Google indexing as a signal to strengthen brand ownership, not proof of stable demand.
 
-Homepage hero animation:
+Current homepage and function-clip assets:
 
-- `assets/finalsnap-real-plugin-demo-v1.mp4`
-- `assets/finalsnap-real-plugin-demo-v1-poster.png`
+- `assets/finalsnap-caseroom-workflow-v284.mp4`
+- `assets/finalsnap-caseroom-workflow-v284-poster.png`
+- `assets/finalsnap-caseroom-workflow-v284-contact-sheet.jpg`
+- `assets/finalsnap-v284-clip-crop-edges.mp4`
+- `assets/finalsnap-v284-clip-cut-middle-reconnect.mp4`
+- `assets/finalsnap-v284-clip-smart-erase-noise.mp4`
+- `assets/finalsnap-v284-clip-before-after-clean-record.mp4`
 
-These are recorded by `tools/record-finalsnap-real-plugin-demo-v1.js` and promoted into `policy-site/assets/` so the public homepage uses the same source ledger and audit as `marketing/real-plugin-demo-v1/`.
-The homepage hero must solve long-screenshot legibility with a real-plugin, same-source camera path: global original screenshot -> local Cut Middle view -> Smart Erase payoff -> global processed screenshot.
-Do not replace the hero with stitched independent visuals. The top content should stay fixed, the unwanted band should collapse, and the lower content should move upward inside the same coordinate system.
-The homepage uses a site-specific no-logo composition because the site navigation already carries the FinalSnap brand mark; avoid double logo exposure in the first viewport.
-The current real-page source is a NASA Science article crop with usage and no-endorsement guardrails recorded in `marketing/real-plugin-demo-v1/source-ledger.md` and `marketing/realpage-hero-v1/source-ledger.md`. The earlier `finalsnap-realpage-hero-12s.*` and `finalsnap-cinematic-cut-hero-12s.*` assets remain source-quality and motion-proof fallbacks, not the current homepage recording.
+These are generated from `marketing/cinematic-flow-v284-sandbox/`, which uses the first-party CaseRoom test page and FinalSnap `manifest.json` version `0.3.380`. Keep the source page, storyboard, contact sheets, and visual-audit output together so future homepage updates can be traced back to the exact recording. The hero fullscreen target should be the video stage only, not the whole card, so fullscreen playback does not show the page caption or rounded-card corners.
 
-Standalone promo-video baseline:
-
-- `assets/finalsnap-magic-cut-v7.mp4`
-- `assets/finalsnap-magic-cut-v7-poster.png`
-
-Locked approved promo-video snapshot:
-
-- `assets/finalsnap-magic-cut-v7-scissors-locked-20260510.mp4`
-- `assets/finalsnap-magic-cut-v7-scissors-locked-20260510-poster.png`
-
-Keep these versioned files as the stable fallback for the May 10, 2026 scissors-consistent promo version.
+Superseded public-site promo assets such as v19 government-site recordings, older real-page clips, and May 2026 magic-cut videos should not be referenced by the live website. If they must be kept for archive or store-history purposes, keep them outside the public website asset path and label them as superseded.

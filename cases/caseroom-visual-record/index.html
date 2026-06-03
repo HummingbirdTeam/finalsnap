@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CaseRoom Visual Record | FinalSnap Test Case</title>
+    <meta name="description" content="A first-party FinalSnap test case for practicing Crop Edges, Cut Middle, Smart Erase, and clean evidence export on a realistic long webpage.">
+    <link rel="canonical" href="https://finalsnap.cc/cases/caseroom-visual-record/index.html">
+    <link rel="icon" href="../../assets/store-icon-128.png">
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #101820;
+        --muted: #5d6a75;
+        --paper: #eef4f3;
+        --surface: #ffffff;
+        --line: #dbe4e8;
+        --accent: #0d766f;
+        --blue: #285f93;
+        --amber: #a76022;
+        --amber-soft: #fff2dc;
+        --danger: #c74f48;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0;
+        line-height: 1.5;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        padding: 0 clamp(18px, 4vw, 54px);
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 820;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: #556371;
+        font-size: 14px;
+        font-weight: 760;
+      }
+
+      .nav a {
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(1280px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 34px 0 64px;
+      }
+
+      .guide {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 420px;
+        gap: 18px;
+        align-items: stretch;
+        margin-bottom: 20px;
+      }
+
+      .guide-panel,
+      .check-panel,
+      .article,
+      .record-card,
+      .event,
+      .doc,
+      .promo-band,
+      .decision,
+      .footer-note {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      .guide-panel {
+        padding: clamp(24px, 4vw, 42px);
+      }
+
+      .eyebrow,
+      .kicker,
+      .promo-label {
+        margin: 0 0 14px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 880;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 18px;
+        font-size: clamp(42px, 6vw, 72px);
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 12px;
+        font-size: clamp(26px, 3vw, 38px);
+        line-height: 1.06;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 22px);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid rgba(16, 24, 32, 0.16);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 820;
+        text-decoration: none;
+      }
+
+      .button.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .check-panel {
+        padding: 22px;
+      }
+
+      .test-steps {
+        display: grid;
+        gap: 10px;
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .test-steps li {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 10px;
+        align-items: start;
+        color: #354453;
+        font-size: 15px;
+      }
+
+      .test-steps b {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        background: #e4f1ef;
+        color: var(--accent);
+        font-size: 13px;
+      }
+
+      .rights-note {
+        margin: 18px 0 0;
+        padding: 12px 14px;
+        border: 1px solid #c8dfdc;
+        border-radius: 8px;
+        background: #f5fbfa;
+        color: #425461;
+        font-size: 13px;
+      }
+
+      .capture-target {
+        scroll-margin-top: 24px;
+      }
+
+      .article {
+        overflow: hidden;
+        background: #f4f8f7;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+        gap: 28px;
+        padding: clamp(28px, 4vw, 44px);
+      }
+
+      .hero-image {
+        overflow: hidden;
+        min-height: 360px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .hero-image img {
+        height: 100%;
+        min-height: 360px;
+        object-fit: cover;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+        font-size: 14px;
+        font-weight: 780;
+      }
+
+      .meta .date {
+        color: var(--accent);
+      }
+
+      .story {
+        display: grid;
+        gap: 14px;
+        padding: 0 clamp(24px, 4vw, 44px) 18px;
+      }
+
+      .record-card {
+        padding: 22px;
+      }
+
+      .record-card p,
+      .decision p,
+      .doc p {
+        color: var(--muted);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .event {
+        position: relative;
+        display: grid;
+        grid-template-columns: 140px 1fr 82px;
+        gap: 18px;
+        align-items: center;
+        padding: 16px 18px;
+        background: #fbfdff;
+      }
+
+      .event strong {
+        color: var(--blue);
+        font-size: 15px;
+      }
+
+      .event span {
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 860;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      .event p {
+        margin: 0;
+        color: #354453;
+        font-size: 15px;
+      }
+
+      .erase-marker {
+        position: absolute;
+        right: 104px;
+        top: 50%;
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        transform: translateY(-50%);
+        border: 1px solid #e0bd82;
+        border-radius: 999px;
+        background: #fff7e7;
+        color: var(--amber);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .doc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .doc {
+        min-height: 122px;
+        padding: 18px;
+        background: #fbfdff;
+      }
+
+      .doc strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .promo-band {
+        margin: 12px clamp(24px, 4vw, 44px) 18px;
+        min-height: 520px;
+        padding: clamp(24px, 4vw, 40px);
+        border-color: #ead2aa;
+        background:
+          linear-gradient(135deg, rgba(255, 248, 232, 0.98), rgba(255, 255, 255, 0.98)),
+          repeating-linear-gradient(90deg, rgba(210, 155, 92, 0.16) 0 24px, rgba(255, 255, 255, 0.2) 24px 48px);
+      }
+
+      .promo-label {
+        display: inline-flex;
+        margin-bottom: 16px;
+        padding: 7px 11px;
+        border: 1px solid #e5bf88;
+        border-radius: 999px;
+        background: var(--amber-soft);
+        color: var(--amber);
+      }
+
+      .promo-grid {
+        display: grid;
+        grid-template-columns: 1fr 0.92fr;
+        gap: 32px;
+        align-items: center;
+        min-height: 360px;
+      }
+
+      .promo-band p {
+        max-width: 560px;
+        color: #76512a;
+        font-size: 19px;
+      }
+
+      .promo-card {
+        min-height: 292px;
+        padding: 24px;
+        border: 1px solid #e9c795;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .promo-lines {
+        display: grid;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .promo-lines div {
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(164, 95, 32, 0.15);
+      }
+
+      .promo-lines div:nth-child(2) {
+        width: 76%;
+      }
+
+      .promo-lines div:nth-child(3) {
+        width: 58%;
+      }
+
+      .promo-lines div:nth-child(4) {
+        width: 88%;
+      }
+
+      .decision {
+        margin: 0 clamp(24px, 4vw, 44px) 34px;
+        padding: 24px;
+      }
+
+      .decision-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .decision img {
+        height: 228px;
+        object-fit: cover;
+        object-position: 50% 18%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .footer-note {
+        margin-top: 20px;
+        padding: 18px;
+        color: #63717d;
+        font-size: 14px;
+      }
+
+      @media (max-width: 900px) {
+        .topbar,
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .topbar {
+          gap: 12px;
+          padding: 16px 18px;
+        }
+
+        .guide,
+        .hero,
+        .promo-grid,
+        .decision-body,
+        .doc-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-image,
+        .hero-image img {
+          min-height: 300px;
+        }
+
+        .event {
+          grid-template-columns: 1fr;
+        }
+
+        .event span {
+          text-align: left;
+        }
+
+        .erase-marker {
+          right: 18px;
+          top: 18px;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../../" aria-label="FinalSnap home">
+        <img src="../../assets/store-icon-128.png" alt="">
+        <span>FinalSnap</span>
+      </a>
+      <nav class="nav" aria-label="Case navigation">
+        <a href="#capture-target">Test Page</a>
+        <a href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Add to Chrome</a>
+        <a href="../../support.html">Support</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="guide" aria-labelledby="case-title">
+        <div class="guide-panel">
+          <p class="eyebrow">FinalSnap test case</p>
+          <h1 id="case-title">Practice on a realistic long webpage.</h1>
+          <p class="lead">
+            Use this first-party CaseRoom sample to test the core FinalSnap workflow:
+            capture the full page, crop the edges, cut the unrelated middle band,
+            erase the small marker, then export a clean record.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#capture-target">Start with this page</a>
+            <a class="button" href="https://chromewebstore.google.com/detail/finalsnap/fbplgmgpdnogfbifbcmcadhfnnbcifcd" rel="noopener">Install FinalSnap</a>
+          </div>
+        </div>
+        <aside class="check-panel" aria-label="How to test this page">
+          <p class="eyebrow">Suggested test</p>
+          <ol class="test-steps">
+            <li><b>1</b><span>Capture this whole page from the browser so the source URL and page content are visible.</span></li>
+            <li><b>2</b><span>In Crop, drag all four borders. Keep the title, photo, dates, and timeline readable.</span></li>
+            <li><b>3</b><span>Use Cut Middle once on the full Summer workflow webinar invitation band.</span></li>
+            <li><b>4</b><span>Use Smart Erase only on the small <strong>?</strong> marker in the May 24 row. Do not erase dates.</span></li>
+            <li><b>5</b><span>Export the shorter clean record as an image or PDF.</span></li>
+          </ol>
+          <p class="rights-note">
+            Rights note: this CaseRoom page and its images are first-party sample material created for FinalSnap testing.
+          </p>
+        </aside>
+      </section>
+
+      <section id="capture-target" class="capture-target" aria-label="CaseRoom sample webpage">
+        <article class="article">
+          <section class="hero">
+            <div>
+              <p class="kicker">Client evidence packet</p>
+              <h2>Visual record for the Moreno filing review</h2>
+              <p class="lead">The reviewer needs one clean screenshot with document names, chronology, and decision context intact while page noise is removed before export.</p>
+              <div class="meta">
+                <span>Prepared by CaseRoom Studio</span>
+                <span class="date">Published May 30, 2026</span>
+                <span>Updated May 30, 2026</span>
+                <span>Packet ID MR-0526</span>
+              </div>
+            </div>
+            <figure class="hero-image">
+              <img src="assets/editorial-desk-proof.png" alt="Organized visual evidence packet on an editorial desk">
+            </figure>
+          </section>
+
+          <section class="story">
+            <section class="record-card">
+              <h2>Why this page is being captured</h2>
+              <p>The case team is archiving a visual proof record for an internal review. The chronology, document summaries, and filing context need to stay readable.</p>
+            </section>
+
+            <section class="record-card">
+              <h2>Evidence timeline</h2>
+              <p>These rows create the record's chronology. They are part of the filing context and should remain in the final record.</p>
+              <div class="timeline">
+                <div class="event"><strong>May 12, 2026</strong><p>Source packet assembled with screenshots, notes, and reviewer markers.</p><span>Keep</span></div>
+                <div class="event"><strong>May 24, 2026</strong><p>Reviewer requested a shorter export with clutter removed and source context intact.</p><em class="erase-marker" data-erase-target aria-label="Temporary review marker">?</em><span>Keep</span></div>
+                <div class="event"><strong>May 30, 2026</strong><p>Final capture prepared after redundant page elements were identified.</p><span>Keep</span></div>
+              </div>
+            </section>
+
+            <section class="record-card">
+              <h2>Documents in scope</h2>
+              <div class="doc-grid">
+                <div class="doc"><strong>Primary screenshot record</strong><p>Long page capture used for review and export.</p></div>
+                <div class="doc"><strong>Supporting timeline</strong><p>Chronology and status notes that must remain intact.</p></div>
+                <div class="doc"><strong>Reviewer note bundle</strong><p>Context for why the page needs a clean visual record.</p></div>
+                <div class="doc"><strong>Export-ready summary</strong><p>Shorter evidence view after irrelevant content is removed.</p></div>
+              </div>
+            </section>
+          </section>
+
+          <section class="promo-band" data-cut-middle-target aria-labelledby="promo-title">
+            <span class="promo-label">Optional notice · unrelated to filing</span>
+            <div class="promo-grid">
+              <div>
+                <h2 id="promo-title">Summer workflow webinar invitation</h2>
+                <p>This invitation is not part of the Moreno filing review. It interrupts the evidence sequence, adds height, and contains no filing facts that belong in the final export.</p>
+                <p>The review team marked it as optional coordination material that can be excluded from the archived visual record.</p>
+              </div>
+              <div class="promo-card">
+                <strong>Optional event panel</strong>
+                <div class="promo-lines" aria-hidden="true">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="decision" aria-labelledby="decision-title">
+            <div class="decision-body">
+              <div>
+                <h2 id="decision-title">Clean record after the cut</h2>
+                <p>After removing the webinar band, the timeline connects directly to the document summary and decision note. The page becomes shorter without losing the context that makes it trustworthy.</p>
+              </div>
+              <img src="assets/reconnect-boards.png" alt="Before and after reconnect concept">
+            </div>
+          </section>
+        </article>
+      </section>
+
+      <p class="footer-note">
+        CaseRoom Studio internal review packet. This controlled sample contains no client-identifying details and is prepared for visual-record workflow review.
+      </p>
+    </main>
+  </body>
+</html>
