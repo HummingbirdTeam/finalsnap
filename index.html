@@ -16,7 +16,7 @@
     <meta name="twitter:description" content="Cut, reconnect, erase, and export clean evidence from long web screenshots.">
     <meta name="twitter:image" content="https://finalsnap.cc/assets/finalsnap-marquee.png">
     <link rel="icon" href="assets/store-icon-128.png">
-    <link rel="stylesheet" href="assets/site.css?v=20260603-v284-site-audit">
+    <link rel="stylesheet" href="assets/site.css?v=20260603-v284-fullscreen-fix">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -85,14 +85,10 @@
                 <video autoplay muted loop playsinline poster="assets/finalsnap-caseroom-workflow-v284-poster.png?v=20260603-v284">
                   <source src="assets/finalsnap-caseroom-workflow-v284.mp4?v=20260603-v284" type="video/mp4">
                 </video>
-                <button class="video-fullscreen" type="button" aria-label="Watch FinalSnap demo fullscreen" data-fullscreen-target=".hero-video-stage">
+                <button class="video-fullscreen" type="button" aria-label="Watch FinalSnap demo fullscreen" data-fullscreen-target=".hero-demo">
                   <span aria-hidden="true" class="fullscreen-corners"></span>
                   <span>Fullscreen</span>
                 </button>
-              </div>
-              <div class="media-caption">
-                <strong>Real editor demo</strong>
-                <span>Recorded with FinalSnap 0.3.380 on a first-party CaseRoom test page.</span>
               </div>
             </div>
           </div>
@@ -430,20 +426,59 @@
           link.href = buildAccountUrl(link.getAttribute("data-account-link") || "home");
         });
 
+        function clearVideoFullscreenFallback() {
+          document.querySelectorAll(".is-fullscreen-fallback").forEach(function (element) {
+            element.classList.remove("is-fullscreen-fallback");
+          });
+          document.body.classList.remove("is-video-fullscreen-fallback");
+        }
+
+        document.addEventListener("fullscreenchange", function () {
+          if (document.fullscreenElement) {
+            clearVideoFullscreenFallback();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            clearVideoFullscreenFallback();
+          }
+        });
+
         document.querySelectorAll("[data-fullscreen-target]").forEach(function (button) {
           button.addEventListener("click", function () {
             var selector = button.getAttribute("data-fullscreen-target");
-            var target = selector ? document.querySelector(selector) : null;
+            var target = selector ? button.closest(selector) || document.querySelector(selector) : null;
             var video = target ? target.querySelector("video") : null;
             if (!target || !video) {
+              return;
+            }
+            if (target.classList.contains("is-fullscreen-fallback")) {
+              clearVideoFullscreenFallback();
               return;
             }
             if (document.fullscreenElement) {
               document.exitFullscreen();
               return;
             }
+            function enterFullscreenFallback() {
+              if (document.fullscreenElement) {
+                return;
+              }
+              target.classList.add("is-fullscreen-fallback");
+              document.body.classList.add("is-video-fullscreen-fallback");
+              video.play().catch(function () {});
+            }
             if (target.requestFullscreen) {
-              target.requestFullscreen();
+              var request = target.requestFullscreen();
+              if (request && typeof request.catch === "function") {
+                request.catch(enterFullscreenFallback);
+              }
+              window.setTimeout(function () {
+                if (!document.fullscreenElement) {
+                  enterFullscreenFallback();
+                }
+              }, 700);
               return;
             }
             if (video.webkitEnterFullscreen) {
