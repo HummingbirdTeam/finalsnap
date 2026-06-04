@@ -258,6 +258,10 @@ a {
   height: auto;
 }
 
+.cleanup-video-card {
+  position: relative;
+}
+
 .hero-demo {
   border-radius: 0;
   background: #eef4f3;
@@ -299,6 +303,8 @@ a {
 .hero-video-stage:fullscreen,
 .hero-demo:fullscreen,
 .hero-demo.is-fullscreen-fallback,
+.cleanup-video-card:fullscreen,
+.cleanup-video-card.is-fullscreen-fallback,
 .clip-card:fullscreen,
 .clip-card.is-fullscreen-fallback {
   display: grid;
@@ -315,6 +321,7 @@ a {
 }
 
 .hero-demo.is-fullscreen-fallback,
+.cleanup-video-card.is-fullscreen-fallback,
 .clip-card.is-fullscreen-fallback {
   position: fixed;
   inset: 0;
@@ -335,6 +342,8 @@ a {
   transform-origin: center;
 }
 
+.cleanup-video-card:fullscreen video,
+.cleanup-video-card.is-fullscreen-fallback video,
 .clip-card:fullscreen video,
 .clip-card.is-fullscreen-fallback video {
   width: 100vw;
@@ -359,6 +368,8 @@ a {
 .hero-demo:fullscreen .media-caption,
 .hero-demo.is-fullscreen-fallback .video-fullscreen,
 .hero-demo.is-fullscreen-fallback .media-caption,
+.cleanup-video-card:fullscreen .video-fullscreen,
+.cleanup-video-card.is-fullscreen-fallback .video-fullscreen,
 .clip-card:fullscreen .video-fullscreen,
 .clip-card:fullscreen div,
 .clip-card.is-fullscreen-fallback .video-fullscreen,
@@ -368,6 +379,7 @@ a {
 
 .hero-video-stage:fullscreen::backdrop,
 .hero-demo:fullscreen::backdrop,
+.cleanup-video-card:fullscreen::backdrop,
 .clip-card:fullscreen::backdrop {
   background: #eef4f3;
 }

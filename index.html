@@ -158,8 +158,14 @@
 
         <section class="section">
           <div class="wrap split reverse">
-            <div class="media-card">
-              <img src="assets/finalsnap-v284-clip-cut-middle-reconnect-poster.png" alt="FinalSnap editor removing the middle of a long evidence screenshot and reconnecting the page.">
+            <div class="media-card cleanup-video-card">
+              <video autoplay muted loop playsinline preload="metadata" poster="assets/finalsnap-v284-clip-cut-middle-reconnect-poster.png?v=20260603-v284-marker-shift-preview">
+                <source src="assets/finalsnap-v284-clip-cut-middle-reconnect.mp4?v=20260603-v284-marker-shift-preview" type="video/mp4">
+              </video>
+              <button class="video-fullscreen" type="button" aria-label="Watch Cut Middle move fullscreen" data-fullscreen-target=".cleanup-video-card">
+                <span aria-hidden="true" class="fullscreen-corners"></span>
+                <span>Fullscreen</span>
+              </button>
             </div>
             <div class="split-copy">
               <p class="eyebrow">The cleanup move</p>
@@ -507,6 +513,11 @@
               window.open(source, "_blank", "noopener");
             }
           });
+        });
+
+        document.querySelectorAll("video[autoplay]").forEach(function (video) {
+          video.muted = true;
+          video.play().catch(function () {});
         });
 
         var screenshots = document.getElementById("roiScreenshots");
