@@ -36,9 +36,9 @@
                 The account server handles sign in, registration, plan status,
                 billing actions, receipts, rewards, and Pro access.
               </p>
-              <p class="note" id="accountStatus">Redirecting to the account server...</p>
+              <p class="note" id="accountStatus" role="status">Redirecting to the account server...</p>
               <div class="actions">
-                <a class="button primary" href="https://finalsnap.cc/account">Open Account Directly</a>
+                <a class="button primary" id="accountDirectLink" href="https://finalsnap.cc/account">Open Account Directly</a>
                 <a class="button" href="support.html">Get Support</a>
               </div>
             </div>
@@ -63,16 +63,6 @@
         }
       }
 
-      function isLoopbackOrigin(origin) {
-        try {
-          const url = new URL(String(origin || ""));
-          const host = String(url.hostname || "").toLowerCase();
-          return host === "localhost" || host === "127.0.0.1" || host === "::1";
-        } catch (_error) {
-          return false;
-        }
-      }
-
       function isPublicPageContext() {
         const host = String(window.location.hostname || "").toLowerCase();
         return host === "finalsnap.cc"
@@ -81,10 +71,9 @@
       }
 
       function buildAccountUrl() {
-        const requestedBase = normalizeBaseUrl(params.get("server") || DEFAULT_ACCOUNT_SERVER);
-        const base = (isPublicPageContext() && isLoopbackOrigin(requestedBase))
+        const base = isPublicPageContext()
           ? DEFAULT_ACCOUNT_SERVER
-          : requestedBase;
+          : normalizeBaseUrl(params.get("server") || DEFAULT_ACCOUNT_SERVER);
         if (!base) return "";
         const url = new URL("/account", base);
         for (const key of ["install_id", "installId", "account_id", "accountId", "session_token", "sessionToken", "email", "from", "return_to", "returnTo"]) {
@@ -97,7 +86,13 @@
       }
 
       const accountUrl = buildAccountUrl();
-      if (accountUrl) {
+      // Static hosting can serve account.html for the extensionless /account route.
+      // At that point another navigation would load the same handoff indefinitely.
+      if (window.location.pathname.replace(/\/+$/, "").endsWith("/account")) {
+        document.querySelector(".page-title").textContent = "FinalSnap Account is temporarily unavailable.";
+        accountStatus.textContent = "Please try again later or contact FinalSnap support.";
+        document.getElementById("accountDirectLink").remove();
+      } else if (accountUrl) {
         window.location.replace(accountUrl);
       } else if (accountStatus) {
         accountStatus.textContent = "Account server is not configured.";
